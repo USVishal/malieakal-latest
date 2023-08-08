@@ -1,0 +1,38 @@
+{% extends 'user/user_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Montserrat|Quicksand");
+    body{
+        background-color: #f2f2f2;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+   
+    
+</style>
+<div class="container-fluid ">
+    <div class="row  bg-light p-3 ml-3 mr-3" style="margin-top: 8rem; margin-bottom: 2rem; border-radius: 20px;" >
+        <div class="col-sm-12 col-md-6 col-lg-6" style="text-align: center;">
+            <img src="{{ item.image.url }}"  class="w-75" alt="">
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 mt-4 content" style="text-align: left;">
+            <h1>{{ item.name }}</h1>
+            <p><span style="font-weight: bolder; font-size: 18px; color: red;">₹{{item.offer_price}}</span> <span disabled style="font-size: 16px;"><strike>₹{{item.price}}</strike></span> <span style="color: green;font-size: 14px;">{{item.offer}}%</span></p>
+            <p style="font-weight: bold;">{{item.title_description}}</p>
+            <p style="font-weight: bold;">About this item</p>
+        
+            <p>{{ item.description }}</p>
+            
+            <a href="{% url 'add_cart_pr_view' item.id item.category_id%}" class="btn btn-danger form-control w-50"> Add To Cart</a>
+            
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% endblock %}

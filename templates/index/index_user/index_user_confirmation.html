@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Username & Password</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+        body{
+
+
+        position:relative;
+        background-color: #f2f2f2;
+        font-family: 'Poppins', sans-serif;;
+        }
+
+        .registration-form{
+        margin-top: 20px;
+        padding: 50px 0;
+
+        }
+
+        .registration-form form{
+        background-color:white ;
+
+        max-width: 498px;
+        height: auto;
+        margin: 0 auto;
+        padding: 49px 49px 64px 49px;
+        border-radius: 30px;
+
+        border: 2px solid #969696;
+        }
+
+        .registration-form .item{
+        border-radius: 20px;
+        margin-bottom:20px;
+        padding:7px 20px;
+        }
+
+        .registration-form .create-account{
+        border-radius:10px;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #5791ff;
+        border: none;
+        color: white;
+        margin-top: 20px;
+        }
+        .confirm-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+        }
+        .demo1{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom:5px;
+        }
+        .fontuser {
+            position: relative;
+
+        }
+        .fontuser i{
+            position: absolute;
+            left: 15px;
+            top: 16px;
+
+        }
+
+        .h3-size {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        line-height: 1.1;
+        }
+
+        .center-text {
+        text-align: center;
+        }
+
+
+        @media (max-width: 576px) {
+        .registration-form form{
+            padding: 11px 20px;
+        }
+
+        .registration-form .form-icon{
+            width: 70px;
+            height: 70px;
+            font-size: 30px;
+            line-height: 70px;
+        }
+
+        }
+
+        h3{
+        color: #fff;
+        }
+        h5 {
+        font-size: 20px;
+        font-weight: bold;
+        display: inline-block;
+        font-family:'Open Sans', sans-serif;
+        margin:-50px;
+        margin-right:200px;
+        margin-top: 25px;
+        color: rgb(255, 255, 255);
+
+        }
+        h1{
+        color: rgb(255, 255, 255);
+        }
+        .first{
+        margin-bottom: -80px;
+        }
+
+        input{
+        color: black;
+        }
+
+
+
+    </style>
+    <script>
+        $(document).ready(function(){
+    $('#birth-date').mask('00/00/0000');
+    $('#phone-number').mask('0000-0000');
+   })
+    </script>
+</head>
+<body>
+    <div class="registration-form">
+
+        <form  method="post" action="{% url 'index_user_confirmation' user_id %}">
+            {% if messages %}
+            
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% csrf_token %}
+            <div class="form-group fontuser">
+                <div class="row mt-4 ">
+                    <div class="col-sm-12" style="text-align: center;">
+                      <img src="https://www.malieakal.in/wp-content/uploads/2022/11/30056-png-768x149.png" class="w-50" alt="">
+                    </div>
+                  </div> 
+                  <div class="row">
+                    <div class="col-sm-12 mt-4" style="text-align: center;">
+                      <h4 class="text-dark">Welcome Back</h4>
+                    </div>
+                  </div>
+                <input type="text" class="form-control item" name="username" id="username" placeholder="Username"> 
+             
+                
+              
+                
+            </div>
+            <div class="form-group fontuser">
+                
+            <input type="password" class="form-control item" name="password" id="password" placeholder="Password"> 
+        
+            </div>
+            <div class="form-group fontuser">
+                <input type="password" class="form-control item"  name="confirm_password" id="password" placeholder="confirm Password">
+                
+      
+            </div>
+            
+            <div class="confirm-button">
+                <button type="button"style="color: red; background-color: white;border: 2px solid #ff0000;"  class="btn btn-block create-account">Cancel</button>
+                <button type="submit" style="color: rgb(255, 255, 255); background-color: red;"; class="btn btn-block create-account">confirm</button>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

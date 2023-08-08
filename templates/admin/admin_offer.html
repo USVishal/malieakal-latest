@@ -1,0 +1,102 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        padding-top: 80px;
+        background-color: #f4e3e3;
+        font-family: Arial, sans-serif;
+    }
+
+    .card {
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+        border-radius: 10px;
+    }
+
+    .btn-primary {
+        background-color: #d22b2c;
+        border-color: #d22b2c;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-label {
+        text-align: center;
+        padding: 8px;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            margin-top: 20px;
+        }
+    }
+</style>
+
+<section class="vh-100 text-center" style="background-color: #f4e3e3; ">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-9 mt-5">
+                
+                <div class="card" style="box-shadow: 20px 20px 10px #9e7377;">
+                    <div class="card-body" >
+                        <form method="post" action="{% url 'new_form' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h1 class="mb-4  mt-5 pt-5 text-uppercase" style="color: #d22b2c;font-family: bold; font-weight: bold;">Maliekal</h1>
+                            <h3 style="color: red;">Add Offer Zone</h3>
+                            <div class="form-group row mt-5">
+                                <label for="formFileLg" class="col-sm-3 col-form-label form-label">Image</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="formFileLg" type="file" name="image" required>
+                                    <small class="form-text text-muted">resolution w-1600 h-1600</small>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group row text-center">
+                                <label for="title" class="col-sm-3 col-form-label form-label">Title</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="title" id="title" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            <div class="form-group row">
+                                <label for="price" class="col-sm-3 col-form-label form-label">Price</label>
+                                <div class="col-sm-9">
+                                    <input type="number" name="price" id="price" class="form-control">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="offer" class="col-sm-3 col-form-label form-label">Offer Percentage</label>
+                                <div class="col-sm-9">
+                                    <input type="number" name="offer_percentage" id="offer_percentage" class="form-control">
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="offer" class="col-sm-3 col-form-label form-label">Offer Price</label>
+                                <div class="col-sm-9">
+                                    <input type="number" name="offer_price" id="offer_price" class="form-control">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary" style="width: 40%;">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,1274 @@
+{% extends 'user/base_sub.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" type="text/css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+<style>
+  
+#owl_rev * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#owl_rev img {
+  max-width: 100%;
+}
+
+#owl_rev body {
+  font-family: 'Roboto Slab', serif;
+  font-size: 15px;
+  line-height: 1.67;
+  color: #444;
+  padding: 60px 0;
+}
+
+#owl_rev .section-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+}
+#owl_rev .section-title:after,
+#owl_rev .section-title:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+}
+#owl_rev .section-title:after {
+  height: 2px;
+  background-color:#dc3545;
+  left: 25%;
+  right: 25%;
+}
+
+#owl_rev .section-title:before {
+  width: 15px;
+  height: 15px;
+  border: 3px solid #fff;
+  background-color: #dc3545;
+  left: 50%;
+  transform: translatex(-50%);
+  bottom: -6px;
+  z-index: 9;
+  border-radius: 50%;
+}
+
+/* CAROUSEL STARTS */
+#owl_rev .customer-feedback .owl-item img {
+  width: 85px;
+  height: 85px;
+}
+
+#owl_rev .feedback-slider-item {
+  position: relative;
+  padding: 60px;
+  margin-top: -40px;
+}
+
+#owl_rev .customer-name {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#owl_rev .feedback-slider-item p {
+  line-height: 1.875;
+}
+
+#owl_rev .customer-rating {
+  background-color: #ffffff;
+  border: 1px solid red;
+  color: rgba(1, 1, 1, 0.702);
+  font-weight: 700;
+  border-radius: 50%;
+  position: absolute;
+  width: 47px;
+  height: 47px;
+  line-height: 44px;
+  font-size: 15px;
+  right: 0;
+  top: 77px;
+  text-indent: -3px;
+}
+
+#owl_rev .thumb-prev .customer-rating {
+  top: -20px;
+  left: 0;
+  right: auto;
+}
+
+#owl_rev .thumb-next .customer-rating {
+  top: -20px;
+  right: 0;
+}
+
+#owl_rev .customer-rating i {
+  color: gold;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* GREY BACKGROUND COLOR OF THE ACTIVE SLIDER */
+#owl_rev .feedback-slider-item:after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  top: 103px;
+  background-color: #f6f6f6;
+  border: 1px solid rgba(251, 90, 13, .1);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+#owl_rev .thumb-prev,
+#owl_rev .thumb-next {
+  position: absolute;
+  z-index: 99;
+  top: 45%;
+  width: 98px;
+  height: 98px;
+  left: -90px;
+  cursor: pointer;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+#owl_rev .thumb-next {
+  left: auto;
+  right: -90px;
+}
+
+#owl_rev .feedback-slider-thumb img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#owl_rev .feedback-slider-thumb:hover {
+  opacity: .8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+}
+
+#owl_rev .customer-feedback .owl-nav [class*="owl-"] {
+  position: relative;
+  display: inline-block;
+  bottom: 45px;
+  transition: all .2s ease-in;
+}
+
+#owl_rev .customer-feedback .owl-nav i {
+  background-color: transparent;
+  color: #dc3545;
+  font-size: 25px;
+}
+
+#owl_rev .customer-feedback .owl-prev {
+  left: -15px;
+}
+
+#owl_rev .customer-feedback .owl-prev:hover {
+  left: -20px;
+}
+
+#owl_rev .customer-feedback .owl-next {
+  right: -15px;
+}
+
+#owl_rev .customer-feedback .owl-next:hover {
+  right: -20px;
+}
+
+/* DOTS */
+#owl_rev .customer-feedback .owl-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 35px;
+}
+#owl_rev .customer-feedback .owl-dot {
+  display: inline-block;
+}
+
+#owl_rev .customer-feedback .owl-dots .owl-dot span {
+  width: 11px;
+  height: 11px;
+  margin: 0 5px;
+  background: #fff;
+  border: 1px solid #dc3545;
+  display: block;
+  -webkit-backface-visibility: visible;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+  border-radius: 50%;
+}
+
+#owl_rev .customer-feedback .owl-dots .owl-dot.active span {
+  background-color: #dc3545;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 767px) {
+    #owl_rev .feedback-slider-item:after {
+    left: 30px;
+    right: 30px;
+  }
+  #owl_rev .customer-feedback .owl-nav [class*="owl-"] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 45px;
+    bottom: auto;
+  }
+  #owl_rev .customer-feedback .owl-prev {
+    left: 0;
+  }
+  #owl_rev .customer-feedback .owl-next {
+    right: 0;
+  }
+  
+}
+
+/* extra */
+#owl_rev .copyright {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.6rem;
+  background-color: #eee;
+}
+#owl_rev .copyright a {
+  display: inline-block;
+  padding: 10px 2px;
+}
+#owl_rev .upwork {
+  color: #37a000;
+}
+#owl_rev .upwork:after {
+  content: '/';
+  margin-left: 10px;
+}
+#owl_rev .fiverr {
+  color: #1dbf73;
+}
+#owl_rev .copyright .triplebyte {
+  display: block;
+  padding-top: 0;
+  color: #344759;
+  text-decoration: underline;
+} 
+  a{
+    text-decoration: none;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+  .pro{
+    
+    
+    border-radius: 25px;  
+    border-top-left-radius: 0px;  
+    border-bottom-right-radius: 0px ;
+    
+  }
+  .pro:hover{
+    border: 2px solid #d29d42;
+    border-radius: 25px;  
+    border-top-left-radius: 0px;  
+    border-bottom-right-radius: 0px ;
+    box-shadow: 5px 4px 8px 0px #d0a04c; 
+}
+ 
+  .contact .info {
+        width: 100%;
+    }
+
+    .contact .info i {
+        font-size: 20px;
+        float: left;
+        width: 44px;
+        height: 44px;
+        background: #cda45e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .contact .info h4 {
+        padding: 0 0 0 60px;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        font-family: "Poppins", sans-serif;
+        color: white;
+    }
+
+    .contact .info p {
+        padding: 0 0 0 60px;
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #bab3a6;
+    }
+
+    .contact .info .open-hours,
+    .contact .info .email,
+    .contact .info .phone {
+        margin-top: 40px;
+    }
+
+    .contact .one-email-form {
+        width: 100%;
+    }
+
+    .contact .one-email-form .form-group {
+        padding-bottom: 8px;
+    }
+
+    .contact .one-email-form .validate {
+        display: none;
+        color: red;
+        margin: 0 0 15px 0;
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+    .contact .one-email-form .error-message {
+        display: none;
+        color: #fff;
+        background: #ed3c0d;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+    }
+
+    .contact .one-email-form .sent-message {
+        display: none;
+        color: #fff;
+        background: #18d26e;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+    }
+
+    .contact .one-email-form .loading {
+        display: none;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .contact .one-email-form .loading:before {
+        content: "";
+        display: inline-block;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        margin: 0 10px -6px 0;
+        border: 3px solid #cda45e;
+        border-top-color: #1a1814;
+        animation: animate-loading 1s linear infinite;
+    }
+
+    .contact .one-email-form input,
+    .contact .one-email-form textarea {
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 14px;
+        background: #0c0b09;
+        border-color: #625b4b;
+        color: white;
+    }
+
+    .contact .one-email-form input::-moz-placeholder,
+    .contact .one-email-form textarea::-moz-placeholder {
+        color: #a49b89;
+    }
+
+    .contact .one-email-form input::placeholder,
+    .contact .one-email-form textarea::placeholder {
+        color: #a49b89;
+    }
+
+    .contact .one-email-form input:focus,
+    .contact .one-email-form textarea:focus {
+        border-color: #cda45e;
+    }
+
+    .contact .one-email-form input {
+        height: 44px;
+    }
+
+    .contact .one-email-form textarea {
+        padding: 10px 12px;
+    }
+
+    .contact .one-email-form button[type=submit] {
+        background: #cda45e;
+        border: 0;
+        padding: 10px 35px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
+    .contact .one-email-form button[type=submit]:hover {
+        background: #d3af71;
+    }
+  .section-title {
+        padding-bottom: 40px;
+    }
+
+    .section-title h2 {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 0;
+        line-height: 1px;
+        margin: 0 0 5px 0;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #aaaaaa;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .section-title h2::after {
+        content: "";
+        width: 120px;
+        height: 1px;
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 4px 10px;
+    }
+
+    .section-title p {
+        margin: 0;
+        margin: 0;
+        font-size: 36px;
+        font-weight: 700;
+        font-family: "Playfair Display", serif;
+        color: black;
+    }
+  .slick-slide {
+    margin: 0px 20px;
+}
+
+.slick-slide img {
+    height: 10rem;
+    width: 100%;
+}
+
+.slick-slider
+{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+  *{
+    font-family:sans-serif;
+  }
+#why_malieakal{
+    margin-top: 7%;
+  }
+@media screen and (max-width: 960px) {  
+  #why_malieakal{
+    margin-top: 2%;
+  }
+}
+
+#car{
+  height: 530px;
+
+}
+
+@media screen and (max-width: 960px) {  
+  #car{
+  height: 180px;
+
+  }
+ 
+  
+}
+
+
+
+
+</style>
+
+
+<div class="row mt-5 pt-5"  id="car">
+  <div class="col-sm-12 col-lg-12 col-md-12">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        {%if image.banner_image1%}
+        <div class="carousel-item active " data-bs-interval="2000">
+          <div class="carousel-caption d-none d-md-block mb-5" >
+            <!-- <div class="p-4" style="background-color: rgba(32, 32, 32, 0.534);"> -->
+              <h1 class="mt-3" style="font-family:cursive;color: rgb(221, 145, 5);">{{image.image_title1}}</h1>
+            <!-- <h3 class="pb-3" style="font-family: cursive;">CREAMY HOT AND READY TO SERVE.</h3>
+            <a href="" class="btn btn-light mb-5" ><b>Book a Table</b></a>
+              <a href="" class="btn btn-light mb-5" ><b>Order Now</b></a> -->
+            <!-- </div> -->
+              
+  
+            </div>
+          <img src="{{image.banner_image1.url}}"  class="d-block w-100" alt="...">
+          
+        </div>
+        {% endif %}
+        {%if image.banner_image2%}
+        <div class="carousel-item" data-bs-interval="4000" >
+          <div class="carousel-caption d-none d-md-block mb-5 ">
+              <h1 style="font-family:cursive">{{image.image_title2}}</h1>
+              <!-- <h5 style="color: rgb(248, 247, 244);font-family: cursive;">Some representative placeholder content for the first slide.</h5>
+              <a href="" class="btn btn-light mb-5" ><b>Book a Table</b></a> -->
+  
+          </div>
+          <img src="{{image.banner_image2.url}}"  class="d-block w-100" alt="..." >
+        </div>
+        {% endif %}
+        {%if image.banner_image3%}  
+        <div class="carousel-item" data-bs-interval="6000" >
+          <div class="carousel-caption d-none d-md-block mb-5">
+              <h1 style="font-family:cursive;color: #c08507;">{{image.image_title3}}</h1>
+              <!-- <h5 style="font-family: cursive;color: white;">Some representative placeholder content for the first slide.</h5> -->
+              <!-- <a href="" class="btn btn-light mb-5" ><b>Book a Table</b></a> -->
+  
+            </div>
+            <img src="{{image.banner_image3.url}}"  class="d-block w-100" alt="..." >
+  
+        </div>
+      </div>
+      {% endif %}
+      {%if image.banner_image4%}  
+        <div class="carousel-item" data-bs-interval="8000" >
+          <div class="carousel-caption d-none d-md-block mb-5">
+              <h1 style="font-family:cursive;color: #c08507;">{{image.image_title4}}</h1>
+              <!-- <h5 style="font-family: cursive;color: white;">Some representative placeholder content for the first slide.</h5> -->
+              <!-- <a href="" class="btn btn-light mb-5" ><b>Book a Table</b></a> -->
+  
+            </div>
+            <img src="{{image.banner_image4.url}}"  class="d-block w-100" alt="..." >
+  
+        </div>
+      </div>
+      {% endif %}
+
+      {%if image.banner_image5%}  
+        <div class="carousel-item" data-bs-interval="10000" >
+          <div class="carousel-caption d-none d-md-block mb-5">
+              <h1 style="font-family:cursive;color: #c08507;">{{image.image_title5}}</h1>
+              <!-- <h5 style="font-family: cursive;color: white;">Some representative placeholder content for the first slide.</h5> -->
+              <!-- <a href="" class="btn btn-light mb-5" ><b>Book a Table</b></a> -->
+  
+            </div>
+            <img src="{{image.banner_image5.url}}"  class="d-block w-100" alt="..." >
+  
+        </div>
+      </div>
+      {% endif %}
+      
+    </div>
+  
+  </div>
+</div>
+
+
+<div class="container-fluid pl-5 pr-5">
+  <div id="about" data-aos="fade-up">
+    <div class="row mt-4" >
+      <div class="col-sm-12 col-md-6 col-lg-6" >
+        <img src="{% static 'images\store-2.webp' %}" class="w-100" style="border-radius: 20px;" alt="">
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+
+        <div class="row" id="why_malieakal"> 
+          <div class="col-sm-12" style="text-align: left;">
+            <h1>Welcome to Malieakal Electronics</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 mt-1" style=" text-align: justify;">
+            <p>Malieakal Group is a speciality electronics & home appliance retail chain inaugurated by Shri.K.P.P.Nambiar (Chairman, KELTRON, Govt.Of Kerala) in the year 1979 at KOLLAM, KERALA. Over the years Malieakal has become the most trusted dealer in Electronics and Home Appliance retailing with uncompromised commitment to product quality</p>
+            <p onclick="more_vie()" style=" margin-top: -1rem; color: red;">Read more</p>
+            
+            <section id="more" style="display: none;">
+              <h3>25000 Sqft 5 Storied State of the Art</h3>
+              <p>
+              As part of facilitating the greater service experience , especially for all sort of customers, we are offering the World First Drive – Through Service Facility.</p>
+            </section>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="row" style="margin-top: 2rem;">
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center; ">
+        <h2 style="font-weight: bold;">Our Service</h2>
+      </div>
+    </div>  
+      
+      <div class="owl-carousel owl-theme owl_views">
+        
+        <div class="item mb-4 ">
+          <div class="card border-0 pt-3" style="height: 15rem; background-color: rgb(252, 177, 177); box-shadow: 5px 10px 20px 0px #bebebe48;" >
+            <img src="https://www.malieakal.in/wp-content/uploads/2021/11/Layer-1.png" alt="{{i.category_name}}" class="card-img-top w-25"  style="margin-left: 7rem;">
+            <div class="card-body" style="text-align: center;">
+              <h6 alt="{{i.category_name}}" style="font-weight: bolder;font-size: 18px;">Incomparable Before and after sales Service</h6>
+              
+              <p>We are taking utmost Care & Priority for Providing the Incomparable Before & After Sales service.</p>
+              
+              
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="item mb-4">
+          <div class="card border-0 pt-3" style="height: 15rem; background-color: rgb(252, 177, 177);box-shadow: 5px 10px 20px 0px #bebebe48;  ">
+            <img src="https://www.malieakal.in/wp-content/uploads/2021/11/emi.png" alt="{{i.category_name}}" class="card-img-top w-25"  style="margin-left: 7rem;">
+            <div class="card-body" style="text-align: center;">
+              <h6 alt="{{i.category_name}}" style="font-weight: bolder;font-size: 18px;">Easy EMI</h6>
+          
+              <p>An array of Financial Services are Provided by leading Financial institutions such as BFL, HDFC, HDB, PINE LABS etc.</p>
+              
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="item mb-4">
+          <div class="card border-0 pt-3" style="height: 15rem; background-color: rgb(252, 177, 177);box-shadow: 5px 10px 20px 0px #bebebe48;  ">
+            <img src="https://www.malieakal.in/wp-content/uploads/2021/11/delivery.png" alt="{{i.category_name}}" class="card-img-top w-25"  style="margin-left: 7rem;">
+            <div class="card-body" style="text-align: center;">
+              <h6 alt="{{i.category_name}}" style="font-weight: bolder;font-size: 18px;">Fast Home Delivery</h6>
+             
+              <p>Our Professionally Manged Logistics & Supply Chain Department help us to Execute the Supply & Deliveries.</p>
+              
+              
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="item mb-4">
+          <div class="card border-0 pt-3" style="height: 15rem; background-color: rgb(252, 177, 177);box-shadow: 5px 10px 20px 0px #bebebe48;">
+            <img src="https://www.malieakal.in/wp-content/uploads/2021/11/digi.png" alt="{{i.category_name}}" class="card-img-top w-25" style="margin-left: 7rem;">
+            <div class="card-body" style="text-align: center;">
+              <h6 alt="{{i.category_name}}" style="font-weight: bolder;font-size: 18px;">DIGI Card</h6>
+              
+              <p>We are providing the DIGI CARD – A digital card to incorporate all the information about the customer's valued patronage with us. </p>
+              
+              
+              
+            </div>
+          </div>
+        </div>
+        
+        <!--  -->  
+      </div>
+      
+    
+  </div>
+
+  <div id="product" data-aos="fade-up">
+
+    <div class="row" style="margin-top: 1rem;">
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center; ">
+        <h2 style="font-weight: bold;">Our Products</h2>
+      </div>
+    </div>    
+    <section id="pro" >
+      <div class=" " data-aos="fade-up">
+        <div class="row g-4 py-1">
+          <div class="owl-carousel owl-theme owl_views" id="carouselExampleControlsSmallScreen">
+            {% for i in cat%}
+            <a href="{% url 'category_items' i.id%}" class="stretched-link">
+            <div class="item mb-4">
+              <div class="card border-0" style="box-shadow: 5px 10px 20px 0px #bebebe48;">
+                <img src="{{i.image.url}}" alt="{{i.category_name}}" class="card-img-top">
+                <div class="card-body">
+                  <h6 alt="{{i.category_name}}" style="font-weight: bolder;font-size: 18px;">{{i.category_name}}</h6>
+                </div>
+              </div>
+            </div>
+            </a>
+            {% endfor %}
+            <!--  -->  
+          </div>
+          
+        </div>
+       
+      </div>
+
+      
+  </section>
+
+    
+  </div>
+
+  <div id="offer" data-aos="fade-up">
+
+    <div class="row mt-3" >
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center; font-weight: bolder;">
+        <h2 style="font-weight: bold;">Offer Zone</h2>
+      </div>
+    </div>
+
+    <div class=" " data-aos="fade-up">
+      <div class="row g-4 py-1">
+        <div class="owl-carousel owl-theme owl_views_offer">
+          {% for item in offer%}
+         
+          <div class="item mb-4">
+            <div class="card border-0 " style="box-shadow: 5px 10px 20px 0px #bebebe48; height: 26rem;">
+              <img src="{{ item.image.url }}" alt="" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title" style="text-align: left; font-weight: bold;">{{ item.title }}</h5>
+                
+                <h5 class="card-title" style="text-align: left;"><span style="font-weight: bolder; font-size: 18px;">₹{{item.offer_price}}</span> <span disabled style="font-size: 16px;"><strike>₹{{item.price}}</strike></span> <span style="background-color: green;color: rgb(255, 255, 255);font-size: 16px; border-radius: 5px; padding: 5px 10px 5px 10px;">{{item.offer}}% off</span></h5>
+              </div>
+            </div>
+          </div>
+      
+          {% endfor %}
+          <!--  -->  
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div id="trending" data-aos="fade-up" >
+    <div class="row mt-4" >
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center; font-weight: bolder;">
+        <h2 style="font-weight: bold;">Trending Product</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      
+      <div class="owl-carousel owl-theme owl_views">
+        {% for i in item_det%}
+        <div class="item mb-4">
+          <div class="card border-0"  style="box-shadow: 5px 10px 20px 0px #bebebe48; height:35rem">
+            <img src="{{i.image.url}}" alt="{{i.category_name}}" class="card-img-top">
+            <div class="card-body">
+              <h6 alt="{{i.category_name}}" style="font-weight: bolder;font-size: 18px;">{{i.name}}</h6>
+              <p ><span style="font-weight: bolder; font-size: 18px;">₹{{i.offer_price}}</span> <span disabled style="font-size: 16px;"><strike>₹{{i.price}}</strike></span> <span style="color: green;font-size: 14px;">{{i.offer}}%  off</span></p>
+              <p>{{i.title_description  }}</p>
+              <div class="row">
+                <div class="col-sm-6 mt-2">
+                  <a href="{% url 'product_view' i.id%}" class="btn btn-outline-danger w-100" style="height:40px">View</a>
+                </div>
+                <div class="col-sm-6 mt-2">
+                  <a href="{% url 'all_items_add_cart' i.id i.category_id%}" class="btn btn-danger w-100" style="height:40px">Add to Cart</a>
+                </div>
+              </div>
+              
+              
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!--  -->  
+      </div>
+      
+    </div>
+    <div class="row  text-center">
+      <div class="col-sm-12">
+        <a href="{% url 'all_items'%}">
+          <div class="btn btn-outline-danger  ml-1">
+            <i class="fa-solid fa-plus"></i>Explore More
+        </div>
+      </a>
+      </div>
+    </div>
+  </div> 
+
+
+  <section id="owl_rev">
+    <div class="customer-feedback mt-5 pt-5">
+      <div class=" text-center">
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-8" style="margin: auto;">
+            <div>
+              <h2 class="section-title">What Clients Say</h2>
+            </div>
+          </div><!-- /End col -->
+        </div><!-- /End row -->
+        <a href="https://www.google.com/maps/place/Malieakal+Electronics+(Kollam)/@8.8912409,76.3025057,11z/data=!4m9!1m2!2m1!1smalieakal+electronics!3m5!1s0x3b05fc4fc5db81cd:0x14490dc4c5866323!8m2!3d8.8912409!4d76.5826571!15sChVtYWxpZWFrYWwgZWxlY3Ryb25pY3MiA4gBAVoXIhVtYWxpZWFrYWwgZWxlY3Ryb25pY3OSARFlbGVjdHJvbmljc19zdG9yZQ" class="stretched-link" style="text-decoration: none; color: black;">
+  
+        <div class="row">
+          <div class="col-md-8  col-sm-12" style="margin: 0 auto;">
+            <div class="owl-carousel feedback-slider">
+  
+              <!-- slider item -->
+              <div class="feedback-slider-item">
+                <img src="https://lh3.googleusercontent.com/a/ALm5wu2oof0rA06j6dAMLxEj2RHgbn2JUup-XDgcffwm=s120-c-c-rp-w64-h64-mo-br100" class="center-block img-circle" alt="Customer Feedback">
+                <h3 class="customer-name">
+                  Binu Binu</h3>
+                <p>Good service support Super world cup offer purchased by sony led thanks vineesh for your support</p>
+                <span class="light-bg customer-rating" data-rating="5">
+                  5
+                  <i class="fa fa-star"></i>
+                </span>
+              </div>
+              <!-- /slider item -->
+  
+              <!-- slider item -->
+              <div class="feedback-slider-item">
+                <img src="https://lh3.googleusercontent.com/a/ALm5wu2Gko302GIO4_aYxjrgWEjbZLe_8WqGV-r9g7Bj=s120-c-c-rp-w64-h64-mo-br100" class="center-block img-circle" alt="Customer Feedback">
+                <h3 class="customer-name">Jerald Jerald</h3>
+                <p>I purchased sony led from malieakal santhana, muneer good dealings</p>
+                <span class="light-bg customer-rating" data-rating="4">
+                  5
+                  <i class="fa fa-star"></i>
+                </span>
+              </div>
+              <!-- /slider item -->
+  
+              <!-- slider item -->
+              <div class="feedback-slider-item">
+                <img src="https://lh3.googleusercontent.com/a-/ACNPEu-YDNCkDSlVepvS2wxjRNhepF2-itpgeFOBUrgZ=s120-c-c-rp-w64-h64-mo-br100" class="center-block img-circle" alt="Customer Feedback">
+                <h3 class="customer-name">Sofiya Sajan</h3>
+                <p>Purchased a samsung led tv thanks to Vishnu to support us</p>
+                <span class="light-bg customer-rating" data-rating="5">
+                  5
+                  <i class="fa fa-star"></i>
+                </span>
+              </div>
+
+              <div class="feedback-slider-item">
+                <img src="https://lh3.googleusercontent.com/a/ALm5wu24RYh2rL-zYDqjXp2he7WqYxiXLcf3UHzoeCpz=s120-c-c-rp-w64-h64-mo-br100" class="center-block img-circle" alt="Customer Feedback">
+                <h3 class="customer-name">
+                  Rincy Roshni134</h3>
+                <p>Always my shop in malieakal, thanks mr saheer,</p>
+                <span class="light-bg customer-rating" data-rating="5">
+                  5
+                  <i class="fa fa-star"></i>
+                </span>
+              </div>
+
+              <div class="feedback-slider-item">
+                <img src="https://lh3.googleusercontent.com/a-/ACNPEu8EW_2GQ6zxwm3O1k_r6K4BCDE6DEJV4w9ThXe-jQ=s120-c-c-rp-w64-h64-mo-br100" class="center-block img-circle" alt="Customer Feedback">
+                <h3 class="customer-name">
+                  Noble Antony Norbert </h3>
+                <p>It's a good shop furniture and home appliances</p>
+                <span class="light-bg customer-rating" data-rating="5">
+                  5
+                  <i class="fa fa-star"></i>
+                </span>
+              </div>
+
+              <div class="feedback-slider-item">
+                <img src="https://lh3.googleusercontent.com/a-/ACNPEu_eiOYNSPueIOHYClC-2mxejBhISH1uxqJFv6l-=s120-c-c-rp-w64-h64-mo-br100" class="center-block img-circle" alt="Customer Feedback">
+                <h3 class="customer-name">
+                  Sreejith S</h3>
+                <p>Purchased a led tv thanks to Vishnu for good service</p>
+                <span class="light-bg customer-rating" data-rating="5">
+                  5
+                  <i class="fa fa-star"></i>
+                </span>
+              </div>
+              <!-- /slider item -->
+              
+            </div><!-- /End feedback-slider -->
+  
+            
+            <!-- /side thumbnail -->
+  
+          </div><!-- /End col -->
+        </div><!-- /End row -->
+        </a>
+      </div><!-- /End container -->
+    </div><!-- /End customer-feedback -->
+
+    
+  </section>
+
+  
+
+  
+  <div class="row mt-4 pt-4" >
+    <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+      <h2 style="font-weight: bold;">Our Brands</h2>
+    </div>
+  </div>  
+  <section id="backers" class="backers" >
+    <div class="" data-aos="fade-up">
+        <section class="customer-logos slider">
+            <div class="slide"><img src="{% static 'images\1-1-150x150.webp'%}"></div>
+            <div class="slide"><img src="{% static 'images\6-1-150x150.webp'%}"></div>
+            <div class="slide"><img src="{% static 'images\6-150x150.webp'%}"></div>
+            <div class="slide"><img src="{% static 'images\7-150x150.webp'%}"></div>
+            <div class="slide"><img src="{% static 'images\8-150x150.webp'%}"></div>
+            <div class="slide"><img src="{% static 'images\6-150x150.webp'%}"></div>
+            <div class="slide"><img src="{% static 'images\7-150x150.webp'%}"></div>
+            <div class="slide"><img src="{% static 'images\8-150x150.webp'%}"></div>
+         </section>
+     
+    </div>
+</section>
+
+
+
+</div>
+
+
+
+<!-- <section id="contact" class="contact pt-4 pb-4" style="background-color: #0c0b09;">
+  <div class="row mt-3 p-3" >
+    <div class="col-sm-2 col-md-2 col-lg-2" style="border-bottom: 5px solid #000000; color: white;">
+      <h2>Countact Us</h2>
+    </div>
+  </div> 
+  <div class="container" data-aos="fade-up">
+
+    
+
+  <div data-aos="fade-up">
+      <iframe style="border:0; width: 100%; height: 350px;"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+          frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="container" data-aos="fade-up">
+
+      <div class="row mt-5">
+
+          <div class="col-lg-4">
+              <div class="info">
+                  <div class="address">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <h4>Location:</h4>
+                      <p>A108 Adam Street, New York, NY 535022</p>
+                  </div>
+
+                  <div class="open-hours">
+                      <i class="far fa-clock"></i>
+                      <h4>Open Hours:</h4>
+                      <p>
+                          Monday-Saturday:<br>
+                          09:00 AM - 06.00 PM
+                      </p>
+                  </div>
+
+                  <div class="email">
+                      <i class="far fa-envelope"></i>
+                      <h4>Email:</h4>
+                      <p>info@example.com</p>
+                  </div>
+
+                  <div class="phone">
+                      <i class="fas fa-phone"></i>
+                      <h4>Call:</h4>
+                      <p>+7025845854</p>
+                  </div>
+
+              </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+              <form action="" method="post" role="form" class="one-email-form">
+                  <div class="row">
+                      <div class="col-md-6 form-group">
+                          <input type="text" name="name" class="form-control" id="name"
+                              placeholder="Your Name" required>
+                      </div>
+                      <div class="col-md-6 form-group mt-3 mt-md-0">
+                          <input type="email" class="form-control" name="email" id="email"
+                              placeholder="Your Email" required>
+                      </div>
+                  </div>
+                  <div class="form-group mt-3">
+                      <input type="text" class="form-control" name="subject" id="subject"
+                          placeholder="Subject" required>
+                  </div>
+                  <div class="form-group mt-3">
+                      <textarea class="form-control" name="message" rows="8" placeholder="Message"
+                          required></textarea>
+                  </div>
+
+                  <div class="text-center"><button type="submit">Send Message</button></div>
+              </form>
+
+          </div>
+
+      </div>
+
+  </div>
+</section> -->
+
+<script>
+ 
+
+ window.addEventListener('load', () => {
+      AOS.init({
+          duration: 500,
+          easing: 'ease-in-out',
+          once: true,
+          mirror: false
+      })
+  });
+
+  $(document).ready(function(){
+      $('.customer-logos').slick({
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 1500,
+          arrows: false,
+          dots: false,
+          pauseOnHover: false,
+          responsive: [{
+              breakpoint: 768,
+              settings: {
+                  slidesToShow: 4
+              }
+          }, {
+              breakpoint: 520,
+              settings: {
+                  slidesToShow: 3
+              }
+          }]
+      });
+  });
+
+
+</script>
+
+<script>
+
+  $('.owl_views_offer').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    dots: false,
+    autoplay: true,
+    mouseDrag: true,
+    touchDrag: true,
+    navText: ["<i class='fa fa-long-arrow-left text-danger mr-3' style='font-size: 25px; margin-top:-100px'></i>", "<i class='fa fa-long-arrow-right  text-danger' style='font-size: 25px;margin-top:-100px'></i>"],
+  
+  responsive:{
+      0:{
+          items:1
+      },
+      600:{
+          items:3
+      },
+      1000:{
+          items:4
+      }
+  }
+  })
+  
+  $('.owl_views').owlCarousel({
+  loop:true,
+  margin:10,
+  autoplay: true,
+  nav:false,
+  responsive:{
+      0:{
+          items:1
+      },
+      600:{
+          items:3
+      },
+      1000:{
+          items:4
+      }
+  }
+  })
+  </script>
+
+<script>
+  function more_vie(){
+    document.getElementById('more').style.display = "block"
+  }
+</script>
+
+<script>
+
+jQuery(document).ready(function($) {
+
+var feedbackSlider = $('.feedback-slider');
+feedbackSlider.owlCarousel({
+  items: 1,
+  nav: true,
+  dots: true,
+  autoplay: true,
+  loop: true,
+  mouseDrag: true,
+  touchDrag: true,
+  navText: ["<i class='fa fa-long-arrow-left'></i>", "<i class='fa fa-long-arrow-right'></i>"],
+  responsive:{
+
+    // breakpoint from 767 up
+    767:{
+      nav: true,
+      dots: false
+    }
+  }
+});
+
+feedbackSlider.on("translate.owl.carousel", function(){
+  $(".feedback-slider-item h3").removeClass("animated fadeIn").css("opacity", "0");
+  $(".feedback-slider-item img, .feedback-slider-thumb img, .customer-rating").removeClass("animated zoomIn").css("opacity", "0");
+});
+
+feedbackSlider.on("translated.owl.carousel", function(){
+  $(".feedback-slider-item h3").addClass("animated fadeIn").css("opacity", "1");
+  $(".feedback-slider-item img, .feedback-slider-thumb img, .customer-rating").addClass("animated zoomIn").css("opacity", "1");
+});
+feedbackSlider.on('changed.owl.carousel', function(property) {
+  var current = property.item.index;
+  var prevThumb = $(property.target).find(".owl-item").eq(current).prev().find("img").attr('src');
+  var nextThumb = $(property.target).find(".owl-item").eq(current).next().find("img").attr('src');
+  var prevRating = $(property.target).find(".owl-item").eq(current).prev().find('span').attr('data-rating');
+  var nextRating = $(property.target).find(".owl-item").eq(current).next().find('span').attr('data-rating');
+  $('.thumb-prev').find('img').attr('src', prevThumb);
+  $('.thumb-next').find('img').attr('src', nextThumb);
+  $('.thumb-prev').find('span').next().html(prevRating + '<i class="fa fa-star"></i>');
+  $('.thumb-next').find('span').next().html(nextRating + '<i class="fa fa-star"></i>');
+});
+$('.thumb-next').on('click', function() {
+  feedbackSlider.trigger('next.owl.carousel', [300]);
+  return false;
+});
+$('.thumb-prev').on('click', function() {
+  feedbackSlider.trigger('prev.owl.carousel', [300]);
+  return false;
+});
+
+}); //end ready
+</script>
+
+{% endblock %}

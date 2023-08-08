@@ -1,0 +1,100 @@
+{% extends 'index/index_staff/index_base_staff.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  body{
+
+
+  position:relative;
+  background-color: #f2f2f2;
+  font-family: 'Poppins', sans-serif;;
+  
+  }
+
+  
+    
+</style>
+<div class="row">
+<div class="col-sm-6 mt-2 p-3 " style="margin: auto; background-color: white; border-radius: 20px; ">
+  <form action = "{% url 'profile_staff_creation' %}" method = "POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row mt-4 ">
+     <div class="col-sm-12" style="text-align: center;">
+       <img src="https://www.malieakal.in/wp-content/uploads/2022/11/30056-png-768x149.png" class="w-25" alt="">
+     </div>
+   </div> 
+   <div class="row">
+     <div class="col-sm-12 mt-4" style="text-align: center;">
+       <h4 class="text-danger">Welcome Back</h4>
+     </div>
+   </div>
+ <div class="form">
+   <div class="form-item form-item1">
+     <label for="firstname">First Name</label>
+     <input id="firstname" type="text" name="firstname" class="form-control" value="{{user.name}}"/>
+   </div>
+
+   <div class="form-item form-item1">
+     <label for="lastname">Last Name</label>
+     <input for="lastname" type="text" name="lastname" class="form-control" value="{{user.lastname}}"/>
+   </div>
+
+   <div class="form-item form-item2">
+     <label for="phonenumber">Phone Number</label>
+     <input id="phonenumber" type="tel" name="phonenumber" class="form-control" value="{{user.phone_number}}"/>
+   </div>
+
+   <div class="form-item form-item2">
+     <label for="email">Email</label>
+     <input id="email" type="email" name="email" class="form-control" value="{{user.email}}"/>
+   </div>
+
+   <div class="form-item form-item3">
+     <label for="gender ">Gender</label>
+     <select name="gender" class="form-control">
+       <option value="{{user.gender}}" selected>{{user.gender}}</option>
+       <option value="Male">Male</option>
+       <option value="Female">Female</option>
+       <option value="Other">Other</option>
+      
+     </select>
+   </div>
+
+   <div class="form-item form-item3">
+     <label for=" date_of_birth">Date of Birth</label>
+     <input id="dob" type="date" name="date_of_birth" value="{{user.date_of_birth| date:'Y-m-d'}}" class="form-control"/>
+   </div>
+
+
+     <div class="form-item form-item4">
+         <label for="Address">Secondary Number</label>
+         <input id="Profection" type="text" name="secondnumb" class="form-control"/>
+      </div>
+
+      <div class="form-item">
+         <label for="height">Profile</label>
+         <input id="height" type="file" name="propic" class="form-control">
+      </div>
+      <div class="textarea-div form-item9">
+       <label for="message"><Address></Address></label>
+       <textarea id="message" type="text" name="address" placeholder="Address" class="form-control"></textarea>
+     </div>
+      
+   <div class="btn-container" style="text-align: center;">
+     <input id="submit" class="btn btn-danger mt-4 form-control w-50" type="submit" name="submit" value="Submit" />
+   </div>
+ </div>
+</form>
+</div>
+</div>
+  
+{% endblock %}
+
+
+
+
+
+
+

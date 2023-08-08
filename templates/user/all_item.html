@@ -1,0 +1,103 @@
+{% extends 'user/user_base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body{
+        background-color: #f2f2f2;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+    
+</style>
+
+<div style="">
+    
+
+  <div style="padding-bottom: 5rem;padding-top: 5rem;">
+ 
+        <div class="row mt-3 p-3">
+            {% for item in items%}
+            <div class="col-md-3 col-sm-12 col-lg-3 mt-2 outers"  style="margin: 0 auto;">
+              <div class="card" style="height: auto;text-align: center;">
+                        {% if item.image %}
+                      
+                        <img class="card-img-top w-100"  src="{{ item.image.url }}">
+                        {% else %}
+                      
+                        <img src="{% static 'images/logo/noimage.jpg' %}" class="card-img-top w-100">
+                      
+                      <br>
+      
+                      {%endif%}
+                      
+      
+                  <div class="card-body">
+                    
+                  
+                    <h5 class="card-title" style="font-weight: bolder; text-align: left;">{{ item.name }}</h5>
+                      
+                    <h5 class="card-title" style="text-align: left"><span style="font-weight: bolder; font-size: 18px;">₹{{item.offer_price}}</span> <span disabled style="font-size: 16px;"><strike>₹{{item.price}}</strike></span> <span style="color: green;font-size: 14px;">{{item.offer}}% off</span></h5>
+                      <div class="row">
+                        <div class="col-sm-12 p-2">
+                          <p class="card-text" style="text-align: justify;">{{ item.title_description }}</p>
+      
+                        </div>
+                      </div>
+                      <div class="row" style="text-align: center;">
+                        <div class="col-sm-6 mt-3   ">
+                            <a href="{% url 'product_view' item.id %}"><div class="btn btn-outline-danger w-100">
+                                View
+                            </div></a>
+                        </div>
+                        <div class="col-sm-6 mt-3">
+                            <a href="{% url 'all_items_add_cart' item.id item.category_id%}"><div class="btn btn-danger  w-100">
+                                Add to Cart
+                            </div></a>
+                        </div>
+                      </div>
+      
+                      
+                  </div>
+                  
+              </div>
+            </div>
+            {%endfor%}
+        </div>
+          
+  
+      
+  </div>
+  <script>
+    const input = document.getElementById('search')
+    input.addEventListener('keyup', (e) => {
+    var inputs = e.target.value.toLowerCase(); //do lowercase
+    document.querySelectorAll('.outers').forEach(function(el) {
+        el.style.display = 'none';
+    });
+
+    document.querySelectorAll('.outers .card-title').forEach(function(el) {
+        //compare 
+        if (el.textContent.toLowerCase().indexOf(inputs) > -1) {
+        el.closest('.outers').style.display = "block"; //if match show that div
+        }
+    })
+    })
+</script> 
+
+
+  <script>
+      
+       function fieldset1_function(){
+          document.getElementById('field2').style.display="none";
+          document.getElementById('field1').style.display="block";
+
+       }
+       function fieldset2_function(){
+          document.getElementById('field1').style.display="none";
+          document.getElementById('field2').style.display="block";
+
+       }
+ 
+   </script> 
+
+
+{% endblock %}

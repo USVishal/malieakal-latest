@@ -1,0 +1,300 @@
+<!-- templates/your_app/create_item.html -->
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  select#categories {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    /* Add a minimum height to make it easier to select options */
+    min-height: 40px;
+    z-index: 1;
+  }
+
+  /* Increase the font size of the options */
+  select#categories option {
+    font-size: 14px;
+  }
+
+  body {
+    padding-top: 80px; /* Add padding to create space for the fixed-top navbar */
+    background-color:#f4e3e3;
+    padding-bottom: 80px;
+    
+    }
+
+  html {
+    background-color: #f1f1f1;
+    color: #333333;
+    font-family: Arial, sans-serif;
+  }
+
+  .form-container {
+    margin: auto;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slide-up 0.5s ease; /* Add animation to the container */
+  }
+
+
+  /* Increase the font size of the options */
+  select#categories option {
+    font-size: 14px;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.5s ease;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease;
+  }
+
+  .animate-zoom {
+    animation: zoom 3s ease;
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoom {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .form-header {
+    text-align: center;
+    font-size: 28px;
+    font-weight:bold;
+    margin-bottom: 1.5rem;
+    color:#d22b2c;
+  }
+
+  .form-item {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  label:hover {
+    color: #007BFF;
+    cursor: pointer;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:hover,
+  select:hover {
+    border-color: #007BFF;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    resize: vertical;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007BFF;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .btn-container {
+    text-align: center;
+  }
+
+  .form-btn {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 3rem;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+  }
+  
+
+  .form-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    color: #FFF;
+  }
+
+</style>
+<section class="form-container mt-5 mb-5 animate-zoom" style="box-shadow: 20px 20px 10px #9e7377;">
+  <form action="{% url 'admin_add_item' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1 class="form-header text-uppercase" style="font-family:bold; font-size:34px;">Create Item</h1>
+    <hr>
+
+    <div class="form animate-slide-up">
+      <div class="form-item animate-fade-in">
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" required/>
+      </div>
+
+      
+
+      <div class="form-item animate-fade-in">
+        <label for="under_category">Under Category</label>
+        <select name="under_category" id="under_category" required>
+          {% for choice in under_choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-item animate-fade-in">
+        <label for="">Price</label>
+        <input id="pricess" type="number" name="price" onchange="calc()"  value=0 required class="form-control"/>
+      </div>
+
+      <div class="form-item animate-fade-in">
+        <label for="">Offer Percentage</label>
+        <input id="off" type="number" onchange="calc()" name="offer_percentage" value=0 required class="form-control"/>
+      </div>
+      <div class="form-item animate-fade-in">
+        <label for="">Offer Price</label>
+        <input id="offer_pricess" type="number" name="offer_price"  value=0 class="form-control"/>
+      </div>
+
+      <div class="form-item animate-fade-in">
+        <label for="image">Upload Image (resolution: W-1600px h-1600px)</label>
+        <label for="file-upload" class="custom-file-upload" >
+          <i class="fa fa-cloud-upload"></i> Choose File
+        </label>
+        <input type="file" id="file-upload" name="image" accept="image/*" required/>
+        <span id="image-size-info"></span>
+      </div>
+
+    <div class="form-item form-item1">
+      <label for="categories">Categories</label>
+      <select name="categories" id="categories" required>
+        {% for item in item_categories %}
+          <option value="{{ item.id }}">{{ item.category_name}}</option>
+        {% endfor %}
+      </select>
+  </div>
+   
+
+      <div class="form-item animate-fade-in">
+        <!-- Add more form items here if needed... -->
+      </div>
+    </div>
+
+    <div class="textarea-div form-item animate-fade-in">
+      <label for="title_description">Title Description</label>
+      <textarea id="title_description" type="text" name="title_description" maxlength="100" placeholder="Title Description max:100 Characters" required></textarea>
+    </div>
+
+    <div class="textarea-div form-item animate-fade-in">
+      <label for="description">Description</label>
+      <textarea id="description" type="text" name="description" placeholder="Description"></textarea>
+    </div>
+
+    <div class="btn-container animate-fade-in">
+      <input  id="submit" class="btn form-btn" type="submit" name="submit" value="Submit" >
+    </div>
+  </form>
+</section>
+
+<script>
+  function calc(){
+    
+    var pr=document.getElementById('pricess').value
+   
+    var pr_off=document.getElementById('off').value 
+
+    document.getElementById('offer_pricess').value= parseFloat(pr)-(parseFloat(pr)*(parseFloat(pr_off)/100))
+
+
+  }
+</script>
+
+<script>
+  // JavaScript for image preview and animations
+  const imageInput = document.getElementById('file-upload');
+  const imagePreview = document.getElementById('image-size-info');
+
+  imageInput.addEventListener('change', function() {
+    const file = this.files[0];
+
+    if (file) {
+      const fileSize = Math.round(file.size / 1024); // in KB
+      imagePreview.textContent = `Selected image size: ${fileSize} KB`;
+    } else {
+      imagePreview.textContent = '';
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const animateElements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+    animateElements.forEach((el) => el.classList.add('slide-up'));
+
+    {% comment %} // After 3 seconds, remove the zoom animation class
+    setTimeout(() => {
+      const formContainer = document.querySelector('.form-container');
+      formContainer.classList.remove('animate-zoom');
+    }, 1000);
+  }); {% endcomment %}
+</script>
+
+{% endblock %}
+

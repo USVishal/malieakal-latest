@@ -1,0 +1,63 @@
+{% extends 'user/user_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+</style>
+
+<!-- https://www.mindluster.com/lesson/128982 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" type="text/css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+ 
+<section>
+  <div class="container-fluid my-5">
+    <h1 class="text-center mb-3">Trending Products</h1>
+    <div class="row mt-5">
+      <div class="owl-carousel owl-theme">
+        {% for i in item_det%}
+        <div class="item mb-4">
+          <div class="card border-0 shadow">
+            <img src="{{i.image.url}}" alt="{{i.category_name}}" class="card-img-top">
+            <div class="card-body">
+              <h6 alt="{{i.category_name}}" style="font-weight: bolder;font-size: 18px;">{{i.name}}</h6>
+              <p ><span style="font-weight: bolder; font-size: 18px;">₹5000</span> <span disabled style="font-size: 16px;"><strike>₹{{i.price}}</strike></span> <span style="color: green;font-size: 14px;">{{i.offer}}%</span></p>
+              <p>{{i.title_description  }}</p>
+              <a href="" class="btn btn-success" >View</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!--  -->  
+      </div>
+    
+
+    </div>
+  </div>
+
+
+
+</section>
+
+
+<script>
+  $('.owl-carousel').owlCarousel({
+loop:true,
+margin:10,
+nav:true,
+responsive:{
+    0:{
+        items:1
+    },
+    600:{
+        items:3
+    },
+    1000:{
+        items:4
+    }
+}
+})
+</script>
+{% endblock %}

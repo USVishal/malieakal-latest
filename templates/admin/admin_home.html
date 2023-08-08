@@ -1,0 +1,257 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    
+
+    .card {
+        background-color: transparent;
+        border: none;
+        margin: 10px;
+        
+    }
+
+    .container {
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        border: none;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        margin-top: 100px; /* Add margin to the top */
+        margin-bottom: 10px; /* Add margin to the bottom */
+    }
+
+    .container .card {
+        position: relative;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the content vertically */
+    }
+
+    .container .card .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f00;
+        transition: 0.7s;
+        z-index: 1;
+    }
+
+    .container .card:nth-child(1) .icon {
+        background: #e07768;
+    }
+
+    .container .card:nth-child(2) .icon {
+        background: #6eadd4;
+    }
+
+    .container .card:nth-child(3) .icon {
+        background: #4aada9;
+    }
+
+    .container .card .icon .fa {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 80px;
+        transition: 0.7s;
+        color: #fff;
+    }
+
+    .container .card .face {
+        width: 300px;
+        height: 200px;
+        transition: 0.5s;
+    }
+
+    .container .card .face.face1 {
+        position: relative;
+        background: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transform: translateY(100px);
+    }
+
+    .container .card:hover .face.face1 {
+        background: #ff0057;
+        transform: translateY(0px);
+    }
+
+    .container .card .face.face1 .content {
+        opacity: 1;
+        transition: 0.5s;
+        text-align: center;
+    }
+
+    .container .card:hover .face.face1 .content {
+        opacity: 1;
+    }
+
+    .container .card .face.face1 .content img.banner, .container .card .face.face1 .content img.category {
+        max-width: 100px; /* Adjust the banner and category image size */
+        
+        
+    }
+    .content img.category{
+      width: 40px;
+      margin-top: 10%;
+    }
+    .content img.banner{
+      width: 40px;
+      margin-top: 10%;
+    }
+
+    .container .card .face.face1 .content h2 {
+        margin-top: 10px; /* Add margin to the top of the heading */
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        color: #414141;
+        font-family: 'Righteous', cursive;
+        letter-spacing: 5px;
+        text-shadow: 2px 2px 8px #000;
+    }
+
+    .container .card .face.face2 {
+        position: relative;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        transform: translateY(-100px);
+    }
+
+    .container .card:hover .face.face2 {
+        transform: translateY(0);
+    }
+
+    .container .card .face.face2 .content p {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #414141;
+    }
+
+    .container .card .face.face2 .content h3 {
+        margin: 0 0 10px 0;
+        padding: 0;
+        color: #fff;
+        font-size: 24px;
+        text-align: center;
+        color: #414141;
+    }
+
+    .container a {
+        text-decoration: none;
+        color: #414141;
+    }
+</style>
+
+<div class="container">
+    <div class="card"style="margin-top: -8rem;" >
+        <div class="face face1" >
+            <div class="content">
+                <div class="icon">
+                    <img src="{% static 'images/banner.png' %}" alt="" class="banner">
+                    <h2 class="text-light">BANNER MANAGEMENT</h2>
+                </div>
+            </div>
+        </div>
+        <div class="face face2" >
+            <div class="content">
+                <h3>
+                  <a href="{% url 'upload_images' %}" class=""><button type="button" class="btn btn-dark">Add Banner</button></a>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-top: -8rem;">
+        <div class="face face1">
+            <div class="content">
+                <div class="icon">
+                    <img src="{% static 'images/product.png' %}" alt="" class="category">
+                    <h2 class="text-light mt-2">PRODUCT MANAGEMENT</h2>
+                </div>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <h3>
+                  <a href="{% url 'admin_add_item' %}" class="center-vertical"><button type="button" class="btn btn-dark center-vertical ">Add Product</button></a>
+                </h3>
+                <p>
+                  <a href="{% url 'admin_itemlist' %}" class="center-vertical"><button type="button" class="btn btn-dark center-vertical mt-2 mx-auto">Product List</button></a>
+              
+                </p>
+                </div>
+        </div>
+    </div>
+    <div class="card" style="margin-top: -8rem;">
+        <div class="face face1">
+            <div class="content">
+                <div class="icon">
+                    <img src="{% static 'images/staff.png' %}" alt="" class="category">
+                    <h2 class="text-light mt-2">STAFF MANAGEMENT</h2>
+                </div>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <h3>
+                  <a href="{% url 'add_staff' %}" class="center-vertical"><button type="button" class="btn btn-dark center-vertical">Add Staff</button></a>
+                <!--<p>-->
+                    <br>
+                 <a href="{% url 'staff_list' %}" class="center-vertical"><button type="button" class="btn btn-dark center-vertical mt-2">Staff List</button></a>                </h3>
+                <!--</p>-->
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-top: -6rem;">
+        <div class="face face1" >
+            <div class="content">
+                <div class="icon" style="background-color: #581845 ;">
+                    <img src="{% static 'images/category.png' %}" alt="" class="category">
+                    <h2 class="text-light mt-2">CATEGORY MANAGEMENT</h2>
+                </div>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <h3>
+                  <a href="{% url 'admin_category'%}" class=""><button type="button" class="btn btn-dark">Add Category</button></a>                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-top: -6rem;">
+        <div class="face face1" >
+            <div class="content">
+                <div class="icon" style="background-color: #FFC300;">
+                    <img src="{% static 'images/offer.png' %}" alt="" class="category">
+                    <h2 class="text-light mt-3">OFFER <br>ZONE</h2>
+                </div>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <h3>
+                  <a href="{% url 'new_form'%}" class=""><button type="button" class="btn btn-dark">Offer</button></a>                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

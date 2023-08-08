@@ -1,0 +1,87 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.col-sm-4{
+  margin: 10% auto;
+
+}
+  body{
+    background-color:#f4e3e3;
+  }
+  .container2{
+    box-shadow: 20px 20px 10px #9e7377;
+  }
+</style>
+
+<div class="row p-3" style="padding-top: 10rem;">
+  <div class="container2 col-sm-4 p-5" style="background-color:#b0c8e8; text-align: left; border-radius: 10px;">
+    
+    <form action="{% url 'admin_category' %}" method="POST" enctype="multipart/form-data" style="text-align: center;">
+      {% csrf_token %}
+      <div class="row mb-4">
+        <div class="col-sm-12"style="border-radius: 10px;">
+          <h3 class="text-uppercase" style="color:#fff; font-family:bold; font-size:34px;" >Add Category</h3>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <label for="category_image" style="text-align:start;">Category Image:</label>
+          
+          <input id="category_image" type="file" name="category_image" title="Image resalution : 400*400 px" accept="image/*" class="form-control" /><p>resalution : W-295px H-306px</p>
+        </div>
+      </div>
+      
+      <div class="row mt-3">
+        <div class="col-sm-12">
+    
+          <input id="category_name" type="text" name="category_name"placeholder="Category Name" class="form-control" />
+        </div>
+      </div>
+      
+      <div class="row mt-3">
+        <div class="col-sm-12">
+          <input id="submit" class="btn btn-light" type="submit" name="submit" value="Submit" />
+
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+  
+
+
+<script>
+  const categoryImageInput = document.getElementById("category_image");
+  const previewImage = document.getElementById("preview-image");
+
+  categoryImageInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener("load", function () {
+        previewImage.src = reader.result;
+      });
+      reader.readAsDataURL(file);
+    } else {
+      previewImage.src = "#";
+    }
+  });
+</script>
+
+
+
+  
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends 'user/user_base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body{
+        background-color: #7b8cac;
+    }
+    .card:hover{
+        box-shadow: 0 0 10px 2px hsl(0, 0%, 0%);
+        float: left;
+        flex: auto;
+    }
+    
+    #div2 {
+      
+      position: relative;
+      animation-name: example1;
+      animation-duration: 2s;  
+      animation-fill-mode: forwards;
+    }
+    @keyframes example1 {
+      from {top:100px;}
+      to {top: 30px; color: rgb(199, 197, 197);}
+      
+    }
+
+    /* rating */
+    .rating {
+    width: 300px;
+    margin: 0 auto 1em;
+    font-size: 45px;
+    overflow:hidden;
+    }
+    .rating input {
+    float: right;
+    opacity: 0;
+    position: absolute;
+    }
+    .rating a, 
+    .rating label {
+                float:right;
+                color: #aaa;
+                text-decoration: none;
+                -webkit-transition: color .4s;
+                -moz-transition: color .4s;
+                -o-transition: color .4s;
+                transition: color .4s;
+            }
+    .rating label:hover ~ label,
+    .rating input:focus ~ label,
+    .rating label:hover,
+            .rating a:hover,
+            .rating a:hover ~ a,
+            .rating a:focus,
+            .rating a:focus ~ a		{
+                color: orange;
+                cursor: pointer;
+            }
+            .rating2 {
+                direction: rtl;
+            }
+            .rating2 a {
+                float:none
+            }
+</style>
+<div style="background-color: #04192c;">
+    <div style="background-color: rgba(58, 58, 57, 0.37);height: 550px;">
+        <div class="row ">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+        
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div id="div2">
+                    <h1 style="font-family: cursive;color: rgb(247, 244, 244);text-align: center;margin-top: 30%;font-size: 500%;">Cart</h1>
+                    <h5 style="color: white;text-align: center;"></h5>
+  
+                </div>
+      
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4"></div>
+          </div>
+        
+    </div>
+  
+  </div>
+
+
+
+
+  <div style="background-color: #04192c;padding-bottom: 15%;padding-top: 2%;">
+      <div class="row pt-3 mb-5">
+          <div class="col-sm-12 col-md-4 col-lg-4"></div>
+          <div class="col-sm-12 col-md-4 col-lg-4">
+              
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4"></div>
+      </div>
+      <fieldset1 id="field1">
+        <div class="row">
+        {% for item in cart%}
+            <div class="col-sm-12 col-md-4 col-lg-4 ps-4 pe-4">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="{{item.item.image.url}}" class="img-fluid rounded-start w-100" alt="..." style="height: 18rem;">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <center>
+                                <h5 class="card-title" style="font-family: cursive;">{{item.item.name}}</h5>
+
+                            </center>         
+                        <center>                  
+                                    <h5 style="color: #D8A382;">₹ {{item.item.price}} <span style="font-size: 14px; color: #04A454;">{{item.offer}}% off</span></h5>
+                        </center>
+                        <p class="card-text">{{item.item.title_description}}</p>
+                        <div class="row" style="bottom: 0;">
+                            <div class="col-sm-12">
+                                <center>
+                                    <a href="" class="btn btn-success">View</a>
+                                    <a href="" class="btn btn-secondary">Cart</a>
+        
+                                </center>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+        </div>
+          
+      </fieldset2>
+      
+  </div>
+  
+
+
+  <script>
+      
+       function fieldset1_function(){
+          document.getElementById('field2').style.display="none";
+          document.getElementById('field1').style.display="block";
+
+       }
+       function fieldset2_function(){
+          document.getElementById('field1').style.display="none";
+          document.getElementById('field2').style.display="block";
+
+       }
+ 
+   </script> 
+
+
+{% endblock %}
+
+
+
+

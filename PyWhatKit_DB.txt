@@ -1,0 +1,35 @@
+Date: 31/7/2023
+Time: 21:39
+Phone Number: +918848937577
+Message: 'Congratulations,You have successfully purchased Name :'+str(usr.name)+str(usr.lastname)+'Address :'+str(pro.address)+'Note: This is a system generated email, do not reply to this email id.'+str(lst)+str(tot)
+--------------------
+Date: 31/7/2023
+Time: 21:45
+Phone Number: +918848937577
+Message: Congratulations,You have successfully purchased Name :SaijuSunnyAddress :Thumpunkal (H), Chottanikkara (Po), Kanayannoor, ErnakulamNote: This is a system generated email, do not reply to this email id.Item : mobileAmount : 200.0 * 1 = 200.0Item : FridgeAmount : 300.0 * 1 = 300.0Total Amount : 500.00
+--------------------
+Date: 31/7/2023
+Time: 21:48
+Phone Number: +919544833774
+Message: Congratulations,You have successfully purchased Name :SaijuSunnyAddress :Thumpunkal (H), Chottanikkara (Po), Kanayannoor, ErnakulamNote: This is a system generated email, do not reply to this email id.Item : FridgeAmount : 300.0 * 2 = 600.0Total Amount : 600.00
+--------------------
+Date: 31/7/2023
+Time: 21:54
+Phone Number: +918848937577
+Message: Greetings from MalieakalReciept,--------------------Name :SaijuSunnyAddress :--------------------Thumpunkal (H), Chottanikkara (Po), Kanayannoor, ErnakulamItem : mobileAmount : 200.0 * 1 = 200.0--------------------Total Amount : 200.00
+--------------------
+Date: 31/7/2023
+Time: 21:58
+Phone Number: +918848937577
+Message: Greetings from MalieakalReciept,Name :SaijuSunnyAddress :Thumpunkal (H), Chottanikkara (Po), Kanayannoor, ErnakulamItem : mobileAmount : 200.0 * 1 = 200.0Total Amount : 200.00
+--------------------
+Date: 31/7/2023
+Time: 23:57
+Phone Number: +918848937577
+Message: Greetings from MalieakalReciept,Name :SaijuSunnyAddress :Thumpunkal (H), Chottanikkara (Po), Kanayannoor, ErnakulamItem : FridgeAmount : 300.0 * 1 = 300.0Total Amount : 300.00
+--------------------
+Date: 1/8/2023
+Time: 11:39
+Phone Number: +918848937577
+Message: Greetings from MalieakalReciept,Name :SaijuSunnyAddress :Thumpunkal (H), Chottanikkara (Po), Kanayannoor, ErnakulamItem : mobileAmount : 200.0 * 2 = 400.0Total Amount : 400.00
+--------------------
