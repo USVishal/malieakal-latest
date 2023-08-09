@@ -60,11 +60,11 @@
                     <div class="profile-desc">
                         <div class="profile-pic">
                             <div class="count-indicator">
-                                <img class="img-xs rounded-circle " src="{% static 'images\logo\icon.png'%}" alt="">
+                                <img class="img-xs rounded-circle " src="{{user.pro_pic.url}}" alt="">
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
-                                <h5 class="mb-0 font-weight-normal">{{user.fullname}}</h5>
+                                <h5 class="mb-0 font-weight-normal">{{user.firstname}}</h5>
                                 <span>Admin</span>
                             </div>
                         </div>
@@ -101,16 +101,16 @@
                 <li class="nav-item nav-category">
                     <span class="nav-link">Navigation</span>
                 </li>
-                <li class="nav-item menu-items">
+                {% comment %} <li class="nav-item menu-items">
                     <a class="nav-link" href="">
                         <span class="menu-icon">
                             <i class="mdi mdi-file-document-box"></i>
                         </span>
                         <span class="menu-title">Profile</span>
                     </a>
-                </li>
+                </li> {% endcomment %}
                <li class="nav-item menu-items">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{% url 'staff_home' %}">
                         <span class="menu-icon">
                             <i class="mdi mdi-apps"></i>
                         </span>
@@ -118,49 +118,49 @@
                     </a>
                 </li>
 
-                <li class="nav-item menu-items">
+                {% comment %} <li class="nav-item menu-items">
                     <a class="nav-link" href="{% url 'staff_management'%}">
                         <span class="menu-icon">
                             <i class="mdi mdi-file-document-box"></i>
                         </span>
                         <span class="menu-title">Staff Management</span>
                     </a>
-                </li>
+                </li> {% endcomment %}
 
-                <li class="nav-item menu-items">
+                {% comment %} <li class="nav-item menu-items">
                   <a class="nav-link" href="">
                       <span class="menu-icon">
                           <i class="mdi mdi-file-document-box"></i>
                       </span>
                       <span class="menu-title">Banner Management</span>
                   </a>
-              </li>
+              </li> {% endcomment %}
 
-              <li class="nav-item menu-items">
+              {% comment %} <li class="nav-item menu-items">
                 <a class="nav-link" href="">
                     <span class="menu-icon">
                         <i class="mdi mdi-file-document-box"></i>
                     </span>
                     <span class="menu-title">Category Management</span>
                 </a>
-            </li>
-            <li class="nav-item menu-items">
+            </li> {% endcomment %}
+            {% comment %} <li class="nav-item menu-items">
               <a class="nav-link" href="">
                   <span class="menu-icon">
                       <i class="mdi mdi-file-document-box"></i>
                   </span>
                   <span class="menu-title">Product Management</span>
               </a>
-          </li>
+          </li> {% endcomment %}
 
-          <li class="nav-item menu-items">
+          {% comment %} <li class="nav-item menu-items">
             <a class="nav-link" href="">
                 <span class="menu-icon">
                     <i class="mdi mdi-file-document-box"></i>
                 </span>
                 <span class="menu-title">Offer Management</span>
             </a>
-        </li>
+        </li> {% endcomment %}
                
             </ul>
         </nav>
@@ -170,7 +170,7 @@
             <nav class="navbar p-0 fixed-top d-flex flex-row">
                 <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
                     <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="#">
-                        <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;padding-left: 100px;">ALTOS
+                        <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;padding-left: 100px;">MALIEAKAL
                         </p>
                     </a>
                 </div>
@@ -184,8 +184,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                 <div class="navbar-profile">
+                                    {% if user.pro_pic %}
+                                      <img class="img-xs rounded-circle" src="{{user.pro_pic.url}}" alt="">
+
+                
+                                    {%else%}
                                     <img class="img-xs rounded-circle" src="{% static 'images\logo\icon.png'%}" alt="">
-                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">{{usr.fullname}}</p>
+
+                                    {%endif%}
+                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">{{user.firstname}}</p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
                             </a>

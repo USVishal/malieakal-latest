@@ -1,107 +1,398 @@
 {% extends 'staff/staff_base.html' %}
 {% load static %}
 {% block content %}
-
 <style>
-    body{
-        background-color: #f4e3e3;
-        font-family:Arial, Helvetica, sans-serif;
-    }
-    .cardhover:hover{
-        border-color: ;
-    }
-    
-</style>
+  select#categories {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    /* Add a minimum height to make it easier to select options */
+    min-height: 40px;
+    z-index: 1;
+  }
 
-<div style="">
-    
+  /* Increase the font size of the options */
+  select#categories option {
+    font-size: 14px;
+  }
 
-  <div style="padding-bottom: 5rem;padding-top: 5rem;">
  
-        <div class="row mt-3 p-3">
-            {% for item in items%}
-            <div class="cardhover col-md-3 col-sm-12 col-lg-3 mt-2 outers"  style="margin: 0 auto;">
-              <div class="card" style="height: auto;text-align: center; box-shadow: 20px 20px 10px #9e7377;">
-                        {% if item.image %}
-                      
-                        <img class="card-img-top w-100"  src="{{ item.image.url }}">
-                        {% else %}
-                      
-                        <img src="{% static 'images/logo/noimage.jpg' %}" class="card-img-top w-100">
-                      
-                      <br>
-      
-                      {%endif%}
-                      
-      
-                  <div class="card-body">
-                    
-                  
-                    <h5 class="card-title" style="font-weight: bolder; text-align: left;">{{ item.name }}</h5>
-                      
-                    <h5 class="card-title" style="text-align: left"><span style="font-weight: bolder; font-size: 18px;">₹{{item.offer_price}}</span> <span disabled style="font-size: 16px;"><strike>₹{{item.price}}</strike></span> <span style="color: green;font-size: 14px;">{{item.offer}}%</span></h5>
-                      <div class="row">
-                        <div class="col-sm-12 p-2">
-                          <p class="card-text" style="text-align: justify;">{{ item.title_description }}</p>
-      
-                        </div>
-                      </div>
-                      <div class="row" style="text-align: center;">
-                        <div class="col-sm-6 mt-3   ">
-                            <a href="{% url 'new_module_edit' item.id %}"><div class="btn btn-outline-danger w-100">
-                                Edit
-                            </div></a>
-                        </div>
-                        <div class="col-sm-6 mt-3">
-                            <a href="{% url 'delete_item' item.id%}"><div class="btn btn-danger  w-100">
-                                Delete
-                            </div></a>
-                        </div>
-                      </div>
-      
-                      
-                  </div>
-                  
-              </div>
-            </div>
-            {%endfor%}
-        </div>
-          
+
+  html {
+    background-color: black;
+    color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+  }
+
+  .form-container {
+    margin: auto;
+    max-width: 600px;
+    background-color: #191c24;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slide-up 0.5s ease; /* Add animation to the container */
+  }
+
+
+  /* Increase the font size of the options */
+  select#categories option {
+    font-size: 14px;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.5s ease;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease;
+  }
+
+  .animate-zoom {
+    animation: zoom 3s ease;
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoom {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
   
-      
+  .form-header {
+    text-align: center;
+    font-size: 28px;
+    font-weight:bold;
+    margin-bottom: 1.5rem;
+    color:#d22b2c;
+  }
+
+  .form-item {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  label:hover {
+    color: #007BFF;
+    cursor: pointer;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:hover,
+  select:hover {
+    border-color: #007BFF;
+  }
+
+  textarea {
+    width: 95%;
+    margin: 1rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    resize: vertical;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007BFF;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .btn-container {
+    text-align: center;
+  }
+
+  .form-btn {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 3rem;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+  }
+  
+
+  .form-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    color: #FFF;
+  }
+
+</style>
+<div class="row pt-3" style="background-color: black;">
+    <div class="" style="font-size: 20px;font-weight: 600;color:#6C7293;">Item List</div>
   </div>
+  <div class="row">
+    <div class="col-sm-12">
+        {% if messages %}
+                    
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mt-3 mb-3" >
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="text" class="form-control text-light" id="search" placeholder="Search by Client...">
+              </div>
+             
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        
+        <div class="table-responsive">
+          <table class="table" >
+            <thead>
+              <tr>
+             
+                <th scope="col" style="color:#6C7293;">Name</th>
+                <th scope="col" style="color:#6C7293;">Item Price</th>
+                <th scope="col" style="color:#6C7293;">Item Offer</th>
+                <th scope="col" style="color:#6C7293;">Item Offer Price</th>
+                <th scope="col" style="color:#6C7293;">Category</th>
+                <th scope="col" style="color:#6C7293;">Uder Category</th>
+                <th scope="col" style="color:#6C7293;">Item Image</th>
+             
+                
+                <th scope="col" style="color:#6C7293;">Actions</th>
+                
+              </tr>
+            </thead>
+            <tbody id="myTable">
+                {%for item in items%}
+                <tr>
+                <td style="color:white;">{{ item.name }}</td>
+                <td style="color:white;">{{ item.price }}</td>
+            
+                <td style="color:white;">{{ item.offer }}</td>
+                <td style="color:white;">{{ item.offer_price }}</td>
+                <td style="color:white;">{{ item.category.category_name }}</td>
+                <td style="color:white;">{{ item.under_category }}</td>
+                <td style="color:white;"><img src="{{ item.image.url }}" style="width:100px; height:100px;"></td>
+     
+                <td class="action-buttons">
+                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#dis{{item.id}}"> Edit</a>
+                    <a href="{% url 'staff_itemdelete' item.id%}"  onclick="confirm('Are You Sure')" class="btn btn-danger"> Delete</a>
+                
+                </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+          </table>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  {%for item in items%}
+  <form action="{% url 'staff_itemedit' item.id %}" method="POST" enctype="multipart/form-data">
+
+  <div class="rowmt-5 modal fade" id="dis{{item.id}}">
+    <div class="modal-dialog bd-example-modal-xl modal-dialog-centered" role="document" tabindex="-1" role="dialog"
+      aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-content modal-xl" style="background-color: #191c24;">
+        <div class="card ">
+          <div class="card-body">
+            <button type="button" class="close text-light" data-dismiss="modal" aria-label=""
+              style="background-color: #191c24;border:none;float: right;font-size: 20px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+            
+              {% csrf_token %}
+              <h1 class="form-header text-uppercase" style="font-family:bold; font-size:34px;">Edit Item</h1>
+              <hr>
+          
+              <div class="form-item form-item1">
+                <label for="title">Title</label>
+                <input id="title" type="text" name="title" value="{{ item.name }}" class="form-control text-light" required/>
+                
+              </div>
+          
+              
+          
+              <div class="form-item form-item1">
+                <label for="under_category">Under Category</label>
+              <select name="under_category" id="under_category" required class="form-control text-light">
+                <option value="{{ item.under_category}}" selected>{{ item.under_category}}</option>
+  
+                {% for choice in under_choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == item.under_category %}selected{% endif %}>
+                    {{ choice.1 }}
+                  </option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="form-item form-item1">
+                <label for="price">Price</label>
+                <input id="price" type="number" name="price" value="{{ item.price }}" required  class="form-control text-light"/>
+              </div>
+          
+              
+          
+              <div class="form-item form-item1">
+                <label for="offer_price">Offer Percentage</label>
+                <input id="offer_price" type="number" name="offer_percentage" value="{{ item.offer }}" required  class="form-control text-light"/>
+              </div>
+              <div class="form-item animate-fade-in">
+                <label for="offer_price">Offer Price</label>
+                <input id="offer_price" type="number" name="offer_price" value="{{ item.offer_price }}" required  class="form-control text-light"/>
+              </div>
+          
+              
+              <div class="form-item animate-fade-in">
+                <label for="image">Upload Image (resolution: W-1600px h-1600px)</label>
+                <label for="file-upload" class="custom-file-upload" >
+                  <i class="fa fa-cloud-upload"></i> Choose File
+                </label>
+                <input type="file" id="file-upload" name="image" accept="image/*">
+                <span id="image-size-info"></span>
+              </div>
+          
+          
+            <div class="form-item form-item1">
+                <label for="categories">Categories</label>
+                <select name="categories" id="categories" required>
+                  <option value="{{ item.category.id}}" selected>{{ item.category.category_name}}</option>
+                  {% for item in item_categories %}
+                  <option value="{{ item.id }}" {% if item.id == item.category.id %}selected{% endif %}>
+                    {{ item.category_name }}
+                  </option>
+                  {% endfor %}
+                </select>
+            </div>
+          
+          
+            <div class="form-item form-item1">
+              
+            </div>
+          
+          
+            </div>
+          
+            <div class="textarea-div form-item9">
+              <label for="title_description">Title Description</label>
+              <textarea id="title_description" type="text" name="title_description" placeholder="Title Description" maxlength="100"  required>{{ item.title_description }}</textarea>
+            </div>
+          
+            
+            <div class="textarea-div form-item9">
+              <label for="description">Description</label>
+              <textarea id="description" type="text" name="description" placeholder="Description">{{ item.description }}</textarea>
+            </div>
+          
+            <div class="btn-container mt-2" style="text-align: center;">
+              <input id="submit" class="btn btn-info " style="width:20%; border-radius:10px;" type="submit" name="submit" value="Submit" />
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{%endfor%}
+  
+  
   <script>
-    const input = document.getElementById('search')
-    input.addEventListener('keyup', (e) => {
-    var inputs = e.target.value.toLowerCase(); //do lowercase
-    document.querySelectorAll('.outers').forEach(function(el) {
-        el.style.display = 'none';
+    $(document).ready(function () {
+      $("#search").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
     });
-
-    document.querySelectorAll('.outers .card-title').forEach(function(el) {
-        //compare 
-        if (el.textContent.toLowerCase().indexOf(inputs) > -1) {
-        el.closest('.outers').style.display = "block"; //if match show that div
-        }
-    })
-    })
-</script> 
-
-
-  <script>
-      
-       function fieldset1_function(){
-          document.getElementById('field2').style.display="none";
-          document.getElementById('field1').style.display="block";
-
-       }
-       function fieldset2_function(){
-          document.getElementById('field1').style.display="none";
-          document.getElementById('field2').style.display="block";
-
-       }
- 
-   </script>
-
+  
+    $(document).ready(function () {
+      $("#search_ts").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  
+    $(document).ready(function () {
+      $("#search_ex").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+  
+  <script type="text/javascript">
+    function setselected(id) {
+      $('input[name="selected"]').val(id);
+    }
+  </script>
+  
+  
 {% endblock %}
-

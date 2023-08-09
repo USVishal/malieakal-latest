@@ -1,4 +1,3 @@
-<!-- templates/your_app/create_item.html -->
 {% extends 'staff/staff_base.html' %}
 {% load static %}
 {% block content %}
@@ -20,23 +19,18 @@
     font-size: 14px;
   }
 
-  body {
-    padding-top: 80px; /* Add padding to create space for the fixed-top navbar */
-    background-color:#f4e3e3;
-    padding-bottom: 80px;
-    
-    }
+ 
 
   html {
-    background-color: #f1f1f1;
-    color: #333333;
+    background-color: black;
+    color: rgb(0, 0, 0);
     font-family: Arial, sans-serif;
   }
 
   .form-container {
     margin: auto;
     max-width: 600px;
-    background-color: #ffffff;
+    background-color: #191c24;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -48,7 +42,7 @@
   select#categories option {
     font-size: 14px;
   }
-  .animate-slide-up {
+  /* .animate-slide-up {
     animation: slide-up 0.5s ease;
   }
 
@@ -58,7 +52,7 @@
 
   .animate-zoom {
     animation: zoom 3s ease;
-  }
+  } */
 
   @keyframes slide-up {
     from {
@@ -109,6 +103,7 @@
     font-size: 16px;
     margin-bottom: 0.5rem;
     transition: color 0.3s ease;
+    color:white;
   }
 
   label:hover {
@@ -178,7 +173,7 @@
   }
 
 </style>
-<section class="form-container mt-5 mb-5 animate-zoom" style="box-shadow: 20px 20px 10px #9e7377;">
+<section class="form-container mt-5 mb-5 animate-zoom" style="">
   <form action="{% url 'new_module' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <h1 class="form-header text-uppercase" style="font-family:bold; font-size:34px;">Create Item</h1>
@@ -186,32 +181,33 @@
 
     <div class="form animate-slide-up">
       <div class="form-item animate-fade-in">
-        <label for="title">Title</label>
-        <input id="title" type="text" name="title" required/>
+        <label for="title" class="text-light"> Title</label>
+        <input id="title" type="text" name="title" class="form-control text-light" required placeholder="Item N">
       </div>
 
       
 
       <div class="form-item animate-fade-in">
         <label for="under_category">Under Category</label>
-        <select name="under_category" id="under_category" required>
+        <select name="under_category" id="under_category" class="form-control text-light" required>
           {% for choice in under_choices %}
             <option value="{{ choice.0 }}">{{ choice.1 }}</option>
           {% endfor %}
         </select>
       </div>
+
       <div class="form-item animate-fade-in">
-        <label for="">Price</label>
-        <input id="pricess" type="number" name="price" onchange="calc()"  value=0 required class="form-control"/>
+        <label for="" class="text-light">Price</label>
+        <input id="pricess" type="number" name="price" onchange="calc()"  value=0 required class="form-control text-light " style="width:100%; height:30px; border:none; border-radius: 6px;">
       </div>
 
       <div class="form-item animate-fade-in">
         <label for="">Offer Percentage</label>
-        <input id="off" type="number" onchange="calc()" name="offer_percentage" value=0 required class="form-control"/>
+        <input id="off" type="number" onchange="calc()" name="offer_percentage" value=0 required class="form-control text-light"style="width:100%; height:30px; border:none; border-radius: 6px;">
       </div>
       <div class="form-item animate-fade-in">
         <label for="">Offer Price</label>
-        <input id="offer_pricess" type="number" name="offer_price"  value=0 class="form-control"/>
+        <input id="offer_pricess" type="number" name="offer_price"  value=0 class="form-control text-light"style="width:100%; height:30px; border:none; border-radius: 6px;">
       </div>
 
       <div class="form-item animate-fade-in">
@@ -266,6 +262,7 @@
 
   }
 </script>
+
 <script>
   // JavaScript for image preview and animations
   const imageInput = document.getElementById('file-upload');
@@ -295,4 +292,3 @@
 </script>
 
 {% endblock %}
-

@@ -1,0 +1,164 @@
+{% extends 'staff/staff_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row pt-3" style="background-color: black;">
+    <div class="" style="font-size: 20px;font-weight: 600;color:#6C7293;">Category</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+        {% if messages %}
+                    
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mt-3 mb-3" >
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="text" class="form-control text-light" id="search" placeholder="Search by Client...">
+              </div>
+             
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        
+        <div class="table-responsive">
+          <table class="table" >
+            <thead>
+              <tr>
+             
+                <th scope="col" style="color:#6C7293;">Category Name</th>
+                
+                <th scope="col" style="color:#6C7293;">Item Image</th>
+             
+                
+                <th scope="col" style="color:#6C7293;">Actions</th>
+                
+              </tr>
+            </thead>
+            <tbody id="myTable">
+                {%for item in cat%}
+                <tr>
+                <td style="color:white;">{{ item.category_name }}</td>
+                <td style="color:white;"><img src="{{ item.image.url }}" style="width:100px; height:100px;"></td>
+            
+                
+                <td class="action-buttons">
+                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#dis{{item.id}}"> Edit</a>
+                    <a href="{% url 'delete_staffcateg' item.id %}"  onclick="confirm('Are You Sure')" class="btn btn-danger"> Delete</a>
+                
+                </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+          </table>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  {%for item in cat%}
+  <form action="{% url 'edit_staffcateg' item.id%}" method="POST" enctype="multipart/form-data">
+
+  <div class="rowmt-5 modal fade" id="dis{{item.id}}">
+    <div class="modal-dialog bd-example-modal-xl modal-dialog-centered" role="document" tabindex="-1" role="dialog"
+      aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-content modal-xl" style="background-color: #191c24;">
+        <div class="card ">
+          <div class="card-body">
+            <button type="button" class="close text-light" data-dismiss="modal" aria-label=""
+              style="background-color: #191c24;border:none;float: right;font-size: 20px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+            
+                {% csrf_token %}
+                <div class="row mb-4">
+                  <div class="col-sm-12"style="border-radius: 10px;">
+                    <h3 class="text-uppercase" style="color:#fff; font-family:bold; font-size:34px;" >Add Category</h3>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="category_image" style="text-align:start;">Category Image:</label>
+                    
+                    <input id="category_image" type="file" name="category_image" title="Image resalution : 400*400 px" accept="image/*" class="form-control text-light"/><p>resalution : W-295px H-306px</p>
+                  </div>
+                </div>
+                
+                <div class="row mt-3">
+                  <div class="col-sm-12">
+              
+                    <input id="category_name" type="text" name="category_name"placeholder="Category Name" class="form-control text-light" value="{{item.category_name}}" required/>
+                  </div>
+                </div>
+                
+                <div class="row mt-3">
+                  <div class="col-sm-12">
+                    <input id="submit" class="btn btn-light" type="submit" name="submit" value="Submit" />
+          
+                  </div>
+                </div>
+          
+          
+      
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{%endfor%}
+  
+  
+  <script>
+    $(document).ready(function () {
+      $("#search").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  
+    $(document).ready(function () {
+      $("#search_ts").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  
+    $(document).ready(function () {
+      $("#search_ex").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+  
+  <script type="text/javascript">
+    function setselected(id) {
+      $('input[name="selected"]').val(id);
+    }
+  </script>
+  
+  
+{% endblock %}

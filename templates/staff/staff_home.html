@@ -1,4 +1,4 @@
-{% extends 'admin/admin_base.html' %}
+{% extends 'staff/staff_base.html' %}
 {% load static %}
 {% block content %}
 
@@ -160,11 +160,10 @@
 </style>
 
 <div class="container">
-    <div class="card"style="margin-top: -8rem;" >
+    <div class="card"style="margin-top: -4rem;" >
         <div class="face face1" >
             <div class="content">
                 <div class="icon">
-                    <img src="{% static 'images/banner.png' %}" alt="" class="banner">
                     <h2 class="text-light">BANNER MANAGEMENT</h2>
                 </div>
             </div>
@@ -172,16 +171,19 @@
         <div class="face face2" >
             <div class="content">
                 <h3>
-                  <a href="{% url 'staff_upload_images' %}" class=""><button type="button" class="btn btn-dark">Add Banner</button></a>
+                    {%if banner%}
+                    <a href="{% url 'edit_banner' banner.id %}" class=""><button type="button" class="btn btn-dark">Edit Banner</button></a>
+                    {%else%}
+                    <a href="{% url 'staff_upload_images' %}" class=""><button type="button" class="btn btn-dark">Add Banner</button></a>
+                    {%endif%}
                 </h3>
             </div>
         </div>
     </div>
-    <div class="card" style="margin-top: -8rem;">
+    <div class="card" style="margin-top: -4rem;">
         <div class="face face1">
             <div class="content">
                 <div class="icon">
-                    <img src="{% static 'images/product.png' %}" alt="" class="category">
                     <h2 class="text-light mt-2">PRODUCT MANAGEMENT</h2>
                 </div>
             </div>
@@ -199,11 +201,10 @@
         </div>
     </div>
     
-    <div class="card" style="margin-top: -6rem;">
+    <div class="card" style="margin-top: -4rem;">
         <div class="face face1" >
             <div class="content">
-                <div class="icon" style="background-color: #581845 ;">
-                    <img src="{% static 'images/category.png' %}" alt="" class="category">
+                <div class="icon" style="background-color: #CB7BC5 ;">
                     <h2 class="text-light mt-2">CATEGORY MANAGEMENT</h2>
                 </div>
             </div>
@@ -211,15 +212,53 @@
         <div class="face face2">
             <div class="content">
                 <h3>
-                  <a href="{% url 'staff_category'%}" class=""><button type="button" class="btn btn-dark">Add Category</button></a>                </h3>
+                  <a href="{% url 'staff_category'%}" class=""><button type="button" class="btn btn-dark">Add Category</button></a>                
+                </h3>
+                <p>
+                    <a href="{% url 'staff_categorylist' %}" class="center-vertical"><button type="button" class="btn btn-dark center-vertical mt-2 mx-auto">Category List</button></a>
+                
+                  </p>
             </div>
         </div>
     </div>
-    <div class="card" style="margin-top: -6rem;">
+    <div class="card" style="margin-top: -4rem;">
+        <div class="face face1" >
+            <div class="content">
+                <div class="icon" style="background-color: #6C9666 ;">
+                    <h2 class="text-light mt-2">Orders</h2>
+                </div>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <h3>
+                  <a href="{% url 'staff_view_order'%}" class=""><button type="button" class="btn btn-dark">View Orders</button></a>                
+                </h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-top: -4rem;">
+        <div class="face face1" >
+            <div class="content">
+                <div class="icon" style="background-color: #C70039;">
+                    <h2 class="text-light mt-2">User Management</h2>
+                </div>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <h3>
+                  <a href="{% url 'staff_user_list_view'%}" class=""><button type="button" class="btn btn-dark">View User</button></a>                
+                </h3>
+                
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-top: -4rem;">
         <div class="face face1" >
             <div class="content">
                 <div class="icon" style="background-color: #FFC300;">
-                    <img src="{% static 'images/offer.png' %}" alt="" class="category">
                     <h2 class="text-light mt-3">OFFER <br>ZONE</h2>
                 </div>
             </div>

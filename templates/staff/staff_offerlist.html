@@ -1,8 +1,181 @@
-{% extends 'admin/admin_base.html' %}
+{% extends 'staff/staff_base.html' %}
 {% load static %}
 {% block content %}
+<style>
+  select#categories {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    /* Add a minimum height to make it easier to select options */
+    min-height: 40px;
+    z-index: 1;
+  }
+
+  /* Increase the font size of the options */
+  select#categories option {
+    font-size: 14px;
+  }
+
+ 
+
+  html {
+    background-color: black;
+    color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+  }
+
+  .form-container {
+    margin: auto;
+    max-width: 600px;
+    background-color: #191c24;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slide-up 0.5s ease; /* Add animation to the container */
+  }
+
+
+  /* Increase the font size of the options */
+  select#categories option {
+    font-size: 14px;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.5s ease;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease;
+  }
+
+  .animate-zoom {
+    animation: zoom 3s ease;
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoom {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .form-header {
+    text-align: center;
+    font-size: 28px;
+    font-weight:bold;
+    margin-bottom: 1.5rem;
+    color:#d22b2c;
+  }
+
+  .form-item {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  label:hover {
+    color: #007BFF;
+    cursor: pointer;
+  }
+
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:hover,
+  select:hover {
+    border-color: #007BFF;
+  }
+
+  textarea {
+    width: 95%;
+    margin: 1rem;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    resize: vertical;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007BFF;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .btn-container {
+    text-align: center;
+  }
+
+  .form-btn {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 3rem;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+  }
+  
+
+  .form-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    color: #FFF;
+  }
+
+</style>
+
+
 <div class="row pt-3" style="background-color: black;">
-    <div class="" style="font-size: 20px;font-weight: 600;color:#6C7293;">PROJECTS</div>
+    <div class="" style="font-size: 20px;font-weight: 600;color:#6C7293;">Item List</div>
   </div>
   <div class="row">
     <div class="col-sm-12">
@@ -20,7 +193,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row mt-3 mb-3" >
-          <div class="col-sm-4">
+          <div class="col-sm-12">
             <div class="row">
               <div class="col-sm-12">
                 <input type="text" class="form-control text-light" id="search" placeholder="Search by Client...">
@@ -29,24 +202,7 @@
             </div>
             
           </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-12">
-                <input type="text" class="form-control text-light" id="search_ts" placeholder="Search by Task...">
-              </div>
-             
-            </div>
-            
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-12">
-                <input type="text" class="form-control text-light" id="search_ex" placeholder="Search By Executive ...">
-              </div>
-              
-            </div>
-            
-          </div>
+          
         </div>
         
         
@@ -55,35 +211,30 @@
             <thead>
               <tr>
              
-                <th scope="col" style="color:#6C7293;">Image</th>
                 <th scope="col" style="color:#6C7293;">Title</th>
-                <th scope="col" style="color:#6C7293;">Description</th>
-                <th scope="col" style="color:#6C7293;">Price</th>
-                <th scope="col" style="color:#6C7293;">Offer</th>
-                <th scope="col" style="color:#6C7293;">User Id</th> 
-                <th scope="col" style="color:#6C7293;">Offer Price</th>
+                <th scope="col" style="color:#6C7293;">Item Price</th>
+                <th scope="col" style="color:#6C7293;">Item Offer</th>
+                <th scope="col" style="color:#6C7293;">Item Offer Price</th>
+                <th scope="col" style="color:#6C7293;">Item Image</th>
+             
+                
                 <th scope="col" style="color:#6C7293;">Actions</th>
                 
               </tr>
             </thead>
             <tbody id="myTable">
-                {%for x in offerlist%}
+                {%for item in offerlist%}
                 <tr>
-                {% comment %} <td style="color:white;">{{ x.image }}</td> {% endcomment %}
-                <td style="color:white;">
-                  <img src="{{ x.image.url }}" alt="Image" style="width:100px; height:100px;">
-              </td>
-                <td style="color:white;">{{ x.title }}</td>
+                <td style="color:white;">{{ item.title }}</td>
+                <td style="color:white;">{{ item.price }}</td>
             
-                <td style="color:white;">{{ x.description }}</td>
-                <td style="color:white;">{{ x.price }}</td>
-                <td style="color:white;">{{ x.offer }}</td>
-                <td style="color:white;">{{ x.user_id }}</td>
-                <td style="color:white;">{{ x.offer_price }}</td>
+                <td style="color:white;">{{ item.offer }}</td>
+                <td style="color:white;">{{ item.offer_price }}</td>
+                <td style="color:white;"><img src="{{ item.image.url }}" style="width:100px; height:100px;"></td>
      
                 <td class="action-buttons">
-                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#dis{{x.id}}"> Edit</a>
-                    <a href="{% url 'delete_offer' x.id%}"  onclick="confirm('Are You Sure')" class="btn btn-danger"> Delete</a>
+                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#dis{{item.id}}"> Edit</a>
+                    <a href="{% url 'delete_offer' item.id%}"  onclick="confirm('Are You Sure')" class="btn btn-danger"> Delete</a>
                 
                 </td>
                 </tr>
@@ -96,10 +247,10 @@
     </div>
   </div>
 
- {%for off in offerlist %}
-  <form method="post" action="{% url 'edit_offer' off.id%}">
+  {%for item in offerlist%}
+  <form action="{% url 'edit_offer' item.id %}" method="POST" enctype="multipart/form-data">
 
-  <div class="rowmt-5 modal fade" id="dis{{off.id}}">
+  <div class="rowmt-5 modal fade" id="dis{{item.id}}">
     <div class="modal-dialog bd-example-modal-xl modal-dialog-centered" role="document" tabindex="-1" role="dialog"
       aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-content modal-xl" style="background-color: #191c24;">
@@ -110,47 +261,69 @@
               <span aria-hidden="true">&times;</span>
             </button>
             
-            <div class="container mt-2" style=" padding: 50px;">
-                <h2 class="text-center text-uppercase" style="font-family:bold; font-size:34px;">Edit Staff</h2>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        
-                            {% csrf_token %}
-                            
-                            <div class="form-group">
-                                <label for="name">image:</label>
-                                <input type="file" id="image" name="image" accept="image/*" required class="form-control text-light">                            </div>
-                            <div class="form-group">
-                                <label for="lastname">Title:</label>
-                                <input type="text" id="lastname" name="title" required class="form-control text-light"  value="{{off.title}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="nickname">Description:</label>
-                                <input type="text" id="nickname" name="description" required class="form-control text-light"  value="{{off.description}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Price:</label>
-                                <input type="number" id="gender" name="price" required class="form-control text-light" value="{{off.price}}">
-                            </div>
-                            <div class="form-group d-flex justify-content-center">
-                                <label for="date_of_birth">Offer:</label>
-                                <input class="ml-2 form-control text-light" type="number" id="" name="offer" required value="{{off.offer}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone_number">Offer Price:</label>
-                                <input type="number" id="offer_price" name="phone_number" required class="form-control text-light" value="{{off.offer_price}}">
-                            </div>
-                            
-                            
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 d-flex justify-content-center mt-4">
-                        <button type="submit" class="btn btn-light">Submit</button>
-                    </div>
-                </div>
+            
+              {% csrf_token %}
+              <h1 class="form-header text-uppercase" style="font-family:bold; font-size:34px;">Edit Offer</h1>
+              <hr>
+          
+              <div class="form-item form-item1">
+                <label for="title">Title</label>
+                <input id="title" type="text" name="title" value="{{ item.title }}" class="form-control text-light" required/>
+                
+              </div>
+          
+              
+          
+              
+              <div class="form-item form-item1">
+                <label for="price">Price</label>
+                <input id="price" type="number" name="price" value="{{ item.price }}" required  class="form-control text-light"/>
+              </div>
+          
+              
+          
+              <div class="form-item form-item1">
+                <label for="offer_price">Offer Percentage</label>
+                <input id="offer_price" type="number" name="offer_percentage" value="{{ item.offer }}" required  class="form-control text-light"/>
+              </div>
+              <div class="form-item animate-fade-in">
+                <label for="offer_price">Offer Price</label>
+                <input id="offer_price" type="number" name="offer_price" value="{{ item.offer_price }}" required  class="form-control text-light"/>
+              </div>
+          
+              
+              <div class="form-item animate-fade-in">
+                <label for="image">Upload Image (resolution: W-1600px h-1600px)</label>
+                <label for="file-upload" class="custom-file-upload" >
+                  <i class="fa fa-cloud-upload"></i> Choose File
+                </label>
+                <input type="file" id="file-upload" name="image" accept="image/*" >
+                <span id="image-size-info"></span>
+              </div>
+          
+          
+            
+          
+          
+            <div class="form-item form-item1">
+              
             </div>
+          
+          
+            </div>
+          
+           
+          
+            
+            <div class="textarea-div form-item9">
+              <label for="description">Description</label>
+              <textarea id="description" type="text" name="description" placeholder="Description">{{ item.description }}</textarea>
+            </div>
+          
+            <div class="btn-container mt-2" style="text-align: center;">
+              <input id="submit" class="btn btn-info " style="width:20%; border-radius:10px;" type="submit" name="submit" value="Submit" />
+            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -158,42 +331,42 @@
   </div>
 </form>
 {%endfor%}
-   
   
-  <script>
-    $(document).ready(function () {
-      $("#search").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
+  
+<script>
+  $(document).ready(function () {
+    $("#search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
     });
-  
-    $(document).ready(function () {
-      $("#search_ts").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
+  });
+
+  $(document).ready(function () {
+    $("#search_ts").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
     });
-  
-    $(document).ready(function () {
-      $("#search_ex").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
+  });
+
+  $(document).ready(function () {
+    $("#search_ex").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
     });
-  </script>
-  
-  <script type="text/javascript">
-    function setselected(id) {
-      $('input[name="selected"]').val(id);
-    }
-  </script>
+  });
+</script>
+
+<script type="text/javascript">
+  function setselected(id) {
+    $('input[name="selected"]').val(id);
+  }
+</script>
   
   
 {% endblock %}

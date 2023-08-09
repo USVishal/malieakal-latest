@@ -15,19 +15,12 @@ urlpatterns = [
       
     path('admin_home/',views.admin_home,name='admin_home'),
     path('admin_delete_item/<int:id>/', views.admin_delete_item, name='admin_delete_item'),
-
     path('admin_add_item',views.admin_add_item,name='admin_add_item'),
     path('admin_edit_item/<int:item_id>',views.admin_edit_item,name='admin_edit_item'),
     path('upload_images',views.upload_images,name='upload_images'),
     path('add_staff/', views.add_staff, name='add_staff'),
     path('admin_itemlist/',views.admin_itemlist,name='admin_itemlist'),
     path('stafflist/', views.staff_list_view, name='staff_list'),
-
-    path('staffofferlist/', views.staffofferlist, name='staffofferlist'),
-    path('edit_offer/<int:id>', views.edit_offer, name='edit_offer'),
-    path('delete_offer/<int:id>', views.delete_offer, name='delete_offer'),
-
-
     path('admin_category/', views.admin_category, name='admin_category'),
     path('new_form/', views.new_form, name='new_form'),
     path('staff_management/', views.staff_management, name='staff_management'), 
@@ -39,12 +32,42 @@ urlpatterns = [
     path('staff_home/',views.staff_home,name='staff_home'),
     path('delete/<int:id>/', views.delete_item, name='delete_item'),
     path('profile_staff_creation/',views.profile_staff_creation,name='profile_staff_creation'),
-    path('new_module',views.new_module,name='new_module'),
-    path('new_module_edit/<int:item_id>',views.new_module_edit,name='new_module_edit'), 
+    
+    path('new_module',views.new_module,name='new_module'), # staff item add
+    path('staff_itemlist',views.staff_itemlist,name='staff_itemlist'), # view list 
+    path('staff_itemedit/<int:item_id>',views.staff_itemedit,name='staff_itemedit'),
+    path('staff_itemdelete/<int:item_id>',views.staff_itemdelete,name='staff_itemdelete'), 
+ 
+
+     
+
     path('staff_upload_images',views.staff_upload_images,name='staff_upload_images'),
-    path('staff_itemlist',views.staff_itemlist,name='staff_itemlist'),
-    path('staff_category',views.staff_category,name='staff_category'),
+
     path('staff_new_offer/', views.staff_new_offer, name='staff_new_offer'),
+    path('staffofferlist/', views.staffofferlist, name='staffofferlist'),
+    path('edit_offer/<int:id>', views.edit_offer, name='edit_offer'),
+    path('delete_offer/<int:id>', views.delete_offer, name='delete_offer'),
+    
+    path('staff_category',views.staff_category,name='staff_category'),
+    path('staff_categorylist',views.staff_categorylist,name='staff_categorylist'),
+    path('edit_staffcateg/<int:id>', views.edit_staffcateg, name='edit_staffcateg'),
+    path('delete_staffcateg/<int:id>', views.delete_staffcateg, name='delete_staffcateg'),
+
+    path('staff_view_order',views.staff_view_order,name='staff_view_order'),
+    path('staff_delete_check/<int:id>', views.staff_delete_check, name='staff_delete_check'),
+
+    path('staff_user_list_view',views.staff_user_list_view,name='staff_user_list_view'),
+    path('staff_edit_user/<int:id>', views.staff_edit_user, name='staff_edit_user'),
+    path('staff_delete_user/<int:id>', views.staff_delete_user, name='staff_delete_user'),
+
+
+    path('edit_banner/<int:id>', views.edit_banner, name='edit_banner'),
+
+
+
+
+
+
 
     
     ############################################################ <<<<<<<<< User MODULE >>>>>>>>>>>>>>>>>
@@ -76,4 +99,7 @@ urlpatterns = [
 
     path('search_feature',views.search_feature,name='search_feature'),
     path('index_search_feature',views.index_search_feature,name='index_search_feature'),
+
+
+    
     ]

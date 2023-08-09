@@ -26,7 +26,8 @@ class User_Registration(models.Model):
     password = models.CharField(max_length=255,blank=True,null=True)
     last_login = models.DateTimeField(null=True, blank=True)
     status =models.CharField(max_length = 255,blank=True,null=True)
-    def _str_(self):
+    otp =  models.IntegerField(default=0)
+    def str(self):
         return self.nickname
     
     def get_email_field_name(self):
@@ -44,8 +45,9 @@ class Profile_User(models.Model):
     date_of_birth = models.DateField(null=True)
     address =  models.TextField(blank=True,null=True)
     pro_pic = models.ImageField(upload_to='images/', default='static/images/logo/icon.png')
+    joindate = models.DateField(null=True)
 
-    def __str__(self):
+    def _str_(self):
         return f"{self.firstname} {self.lastname}"
 
 class bannerads(models.Model):
@@ -63,7 +65,7 @@ class bannerads(models.Model):
 class category(models.Model):
     category_name=  models.CharField(max_length=255,blank=True,null=True)
     image = models.FileField(upload_to='images/category-banner', default='static/images/logo/noimage.jpg')
-    def _str_(self):
+    def str(self):
         return self.category_name
 
 class item(models.Model):
@@ -85,12 +87,17 @@ class cart(models.Model):
 
 class checkout(models.Model):
     user = models.ForeignKey(User_Registration, on_delete=models.SET_NULL, null=True, blank=True)
-    item = models.ForeignKey(item, on_delete=models.SET_NULL, null=True, blank=True)
-    qty=models.IntegerField(null=True, blank=True)
-    item_total=models.FloatField(null=True, blank=True)
-    item_price=models.FloatField(null=True, blank=True)
-    item_name = models.CharField(max_length=255,blank=True,null=True)
+    total_amount=models.FloatField(default=0,null=True, blank=True)
     date=models.DateTimeField(null=True, blank=True)
+    profile = models.ForeignKey(Profile_User, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+class checkout_item(models.Model):
+    checkout = models.ForeignKey(checkout, on_delete=models.SET_NULL, null=True, blank=True)
+    item = models.ForeignKey(item, on_delete=models.SET_NULL, null=True, blank=True)
+    item_name= models.CharField(max_length=255,blank=True,null=True)
+    qty=models.IntegerField(null=True, blank=True)
+    item_price=models.FloatField(null=True, blank=True)
 
 
 class offer_zone(models.Model):
@@ -101,4 +108,3 @@ class offer_zone(models.Model):
     price=  models.FloatField(default=0)
     offer_price=  models.FloatField(default=0)
     offer= models.IntegerField(default=0)
-

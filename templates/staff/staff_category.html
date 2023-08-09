@@ -9,9 +9,9 @@
   body{
     background-color:#f4e3e3;
   }
-  .container2{
+  {% comment %} .container2{
     box-shadow: 20px 20px 10px #9e7377;
-  }
+  } {% endcomment %}
 </style>
 
 <div class="row p-3" style="padding-top: 10rem;">
@@ -29,14 +29,14 @@
         <div class="col-sm-12">
           <label for="category_image" style="text-align:start; ">Category Image:</label>
           
-          <input id="category_image" type="file" name="category_image" title="Image resalution : 400*400 px" accept="image/*" class="form-control" /><p>resalution : 400*400</p>
+          <input id="category_image" type="file" name="category_image" title="Image resalution : 400*400 px" accept="image/*" class="form-control text-light" /><p>resalution : 400*400</p>
         </div>
       </div>
       
       <div class="row mt-3">
         <div class="col-sm-12">
     
-          <input id="category_name" type="text" name="category_name"placeholder="Category Name" class="form-control" />
+          <input id="category_name" type="text" name="category_name"placeholder="Category Name" class="form-control text-light" />
         </div>
       </div>
       
